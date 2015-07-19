@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!-- Buttons -->
+
+	<style name="GTS.Button.Flat" parent="android:Widget.Material.Light.Button.Borderless">
+		<item name="android:gravity">start</item>
+	</style>
+</resources>

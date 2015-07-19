@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<attr name="label" />
+	<attr name="note" />
+	<attr name="description" />
+
+	<attr name="scale" format="integer" />
+	<attr name="steps" format="integer" />
+
+	<attr name="duration" format="integer" />
+	<attr name="delay" format="integer" />
+
+	<declare-styleable name="floatingHintEditText">
+		<attr name="scale" />
+		<attr name="steps" />
+	</declare-styleable>
+
+	<declare-styleable name="labeledEditText">
+		<attr name="label" />
+		<attr name="android:hint" />
+		<attr name="android:inputType" />
+	</declare-styleable>
+
+	<declare-styleable name="labeledSpinner">
+		<attr name="label" />
+		<attr name="note" />
+	</declare-styleable>
+
+	<declare-styleable name="Toggle">
+		<attr name="android:textOff" />
+		<attr name="android:textOn" />
+		<attr name="android:checked" />
+	</declare-styleable>
+
+	<declare-styleable name="ToggleBar">
+		<attr name="label" />
+		<attr name="description" />
+		<attr name="android:textOff" />
+		<attr name="android:textOn" />
+		<attr name="android:checked" />
+	</declare-styleable>
+
+	<declare-styleable name="UndoBar">
+		<attr name="label" />
+		<attr name="duration" />
+		<attr name="delay" />
+	</declare-styleable>
+
+	<declare-styleable name="colorPickerSwatch">
+		<attr name="android:color" />
+		<attr name="android:checked" />
+	</declare-styleable>
+
+</resources>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<array name="color_options">
+		<item>@color/Android.Red</item>
+		<item>@color/Android.Pink</item>
+		<item>@color/Android.Purple</item>
+		<item>@color/Android.DeepPurple</item>
+		<item>@color/Android.Indigo</item>
+		<item>@color/Android.Blue</item>
+		<item>@color/Android.Cyan</item>
+		<item>@color/Android.Teal</item>
+		<item>@color/Android.Green</item>
+		<item>@color/Android.Lime</item>
+		<item>@color/Android.Yellow</item>
+		<item>@color/Android.Amber</item>
+	</array>
+
+</resources>

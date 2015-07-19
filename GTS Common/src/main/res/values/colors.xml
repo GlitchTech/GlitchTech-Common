@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<color name="Black">#000000</color>
+	<color name="Black.25">#40000000</color>
+	<color name="Black.50">#80000000</color>
+	<color name="Black.54">#8A000000</color>
+	<color name="Black.75">#BF000000</color>
+	<color name="Black.87">#DE000000</color>
+
+	<color name="White">#FFFFFF</color>
+	<color name="White.50">#80FFFFFF</color>
+	<color name="White.54">#BFFFFFFF</color>
+	<color name="White.87">#DEFFFFFF</color>
+	<color name="White.Translucent">#B3FFFFFF</color>
+
+	<color name="Transparent">#00000000</color>
+
+	<color name="Button.Blue.Start">@color/Android.Blue.Darker</color>
+	<color name="Button.Blue.End">@color/Android.Blue.Dark</color>
+	<color name="Button.Blue.Stroke">@color/Android.BlueGrey</color>
+
+	<!--
+	Android Suggested - http://www.google.com/design/spec/style/color.html#color-ui-color-application
+
+	Light => 100
+	Base => 500
+	Dark => 700
+	Darker => 900
+	Translucent => 40% of Base
+	Accent => Typically A200
+	-->
+
+	<color name="Android.Red">#F44336</color>
+	<color name="Android.Red.Light">#FFCDD2</color>
+	<color name="Android.Red.Dark">#CC0000</color>
+	<color name="Android.Red.Darker">#B71C1C</color>
+	<color name="Android.Red.Translucent">#66F44336</color>
+	<color name="Android.Red.Accent">#FF5252</color>
+
+	<color name="Android.Pink">#E91E63</color>
+
+	<color name="Android.Purple">#9C27B0</color>
+	<color name="Android.Purple.Light">#9933CC</color>
+	<color name="Android.Purple.Dark">#9933CC</color>
+	<color name="Android.Purple.Darker">#7a29a3</color>
+	<color name="Android.Purple.Translucent">#669C27B0</color>
+	<color name="Android.Purple.Accent">#7C4DFF</color>
+
+	<color name="Android.DeepPurple">#673AB7</color>
+
+	<color name="Android.Indigo">#3F51B5</color>
+
+	<color name="Android.Blue">#2196F3</color>
+	<color name="Android.Blue.Light">#BBDEFB</color>
+	<color name="Android.Blue.Dark">#1976D2</color>
+	<color name="Android.Blue.Darker">#0D47A1</color>
+	<color name="Android.Blue.Translucent">#662196F3</color>
+	<color name="Android.Blue.Accent">#448AFF</color>
+
+	<color name="Android.LightBlue">#03A9F4</color>
+
+	<color name="Android.Cyan">#00BCD4</color>
+
+	<color name="Android.Teal">#009688</color>
+
+	<color name="Android.Green">#4CAF50</color>
+	<color name="Android.Green.Light">#C8E6C9</color>
+	<color name="Android.Green.Dark">#388E3C</color>
+	<color name="Android.Green.Darker">#1B5E20</color>
+	<color name="Android.Green.Translucent">#664CAF50</color>
+
+	<color name="Android.LightGreen">#8BC34A</color>
+
+	<color name="Android.Lime">#CDDC39</color>
+
+	<color name="Android.Yellow">#FFEB3B</color>
+	<color name="Android.Yellow.Light">#FFF9C4</color>
+	<color name="Android.Yellow.Dark">#FBC02D</color>
+	<color name="Android.Yellow.Darker">#F57F17</color>
+	<color name="Android.Yellow.Translucent">#66FFEB3B</color>
+
+	<color name="Android.Amber">#FFC107</color>
+
+	<color name="Android.Orange">#FF9800</color>
+
+	<color name="Android.DeepOrange">#FF5722</color>
+
+	<color name="Android.Brown">#795548</color>
+
+	<color name="Android.Grey">#9E9E9E</color>
+	<color name="Android.Grey.Border">#AAAAAA</color>
+	<color name="Android.Gray.Light.Translucent">#B3CFD8DC</color>
+
+	<color name="Android.BlueGrey">#607D8B</color>
+	<color name="Android.BlueGrey.Light">#CFD8DC</color>
+	<color name="Android.BlueGrey.Dark">#455A64</color>
+	<color name="Android.BlueGrey.Darker">#263238</color>
+</resources>

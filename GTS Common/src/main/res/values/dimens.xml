@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<dimen name="app_defaultsize_w">632.0dip</dimen>
+	<dimen name="app_defaultsize_h">598.0dip</dimen>
+	<dimen name="app_minimumsize_w">632.0dip</dimen>
+	<dimen name="app_minimumsize_h">598.0dip</dimen>
+	<dimen name="frag_rounding_radius">20dp</dimen>
+	<dimen name="progress_action_padding">8dp</dimen>
+
+	<!-- Floating Action Button specs -->
+	<dimen name="diameter">48dp</dimen>
+	<dimen name="elevation_low">1dp</dimen>
+	<dimen name="elevation_high">4dp</dimen>
+	<dimen name="add_button_margin">16dp</dimen>
+
+	<!-- Android Design guidelines -->
+	<dimen name="activity_horizontal_margin">16dp</dimen>
+	<dimen name="activity_vertical_margin">16dp</dimen>
+
+	<dimen name="spacing_xlarge">72dp</dimen>
+	<dimen name="spacing_large">24dp</dimen>
+	<dimen name="spacing_medium">16dp</dimen>
+	<dimen name="spacing_small">8dp</dimen>
+	<dimen name="spacing_tiny">4dp</dimen>
+
+	<dimen name="img_square_small">32dp</dimen>
+	<dimen name="img_square_medium">48dp</dimen>
+	<dimen name="img_square_large">64dp</dimen>
+	<dimen name="img_square_xlarge">88dp</dimen>
+
+	<dimen name="row_height">48dp</dimen>
+	<dimen name="row_height_three_line">88dp</dimen>
+	<dimen name="sidebar_width">320dp</dimen>
+
+	<!-- Color Specs -->
+	<dimen name="color_swatch_large">64dip</dimen>
+	<dimen name="color_swatch_small">48dip</dimen>
+	<dimen name="color_swatch_margins_large">8dip</dimen>
+	<dimen name="color_swatch_margins_small">4dip</dimen>
+
+</resources>

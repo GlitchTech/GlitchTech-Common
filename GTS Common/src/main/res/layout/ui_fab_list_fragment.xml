@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="com.glitchtechscience.virtualdressform.project.view.ProjectListFragment">
+
+	<com.glitchtechscience.ui.widgets.UndoBar
+		android:id="@+id/undobar"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true" />
+
+	<FrameLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_above="@id/undobar">
+
+		<TextView
+			android:id="@id/android:empty"
+			style="@style/GTS.TextAppearance.Headline"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:gravity="center"
+			android:text="@string/generic_empty_list" />
+
+		<ListView
+			android:id="@id/android:list"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:drawSelectorOnTop="false" />
+
+		<com.getbase.floatingactionbutton.AddFloatingActionButton
+			android:id="@+id/floating_action_button"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="bottom|end"
+			android:layout_marginBottom="@dimen/add_button_margin"
+			android:layout_marginEnd="@dimen/add_button_margin"
+			android:layout_marginRight="@dimen/add_button_margin" />
+
+	</FrameLayout>
+
+</RelativeLayout>

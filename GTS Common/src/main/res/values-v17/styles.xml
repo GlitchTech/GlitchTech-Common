@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!-- Generalized Padding/Margins -->
+
+	<style name="GTS.Padding.All">
+		<item name="android:paddingStart">@dimen/activity_horizontal_margin</item>
+		<item name="android:paddingEnd">@dimen/activity_horizontal_margin</item>
+		<item name="android:paddingTop">@dimen/activity_vertical_margin</item>
+		<item name="android:paddingBottom">@dimen/activity_vertical_margin</item>
+	</style>
+
+	<style name="GTS.Padding.Horizontal">
+		<item name="android:paddingStart">@dimen/activity_horizontal_margin</item>
+		<item name="android:paddingEnd">@dimen/activity_horizontal_margin</item>
+	</style>
+
+	<style name="GTS.Padding.Horizontal.Small">
+		<item name="android:paddingStart">@dimen/spacing_small</item>
+		<item name="android:paddingEnd">@dimen/spacing_small</item>
+	</style>
+
+	<style name="GTS.Padding.Start">
+		<item name="android:paddingStart">@dimen/activity_horizontal_margin</item>
+	</style>
+
+	<style name="GTS.Padding.End">
+		<item name="android:paddingEnd">@dimen/activity_horizontal_margin</item>
+	</style>
+
+	<style name="GTS.Margin.All">
+		<item name="android:layout_marginStart">@dimen/activity_horizontal_margin</item>
+		<item name="android:layout_marginEnd">@dimen/activity_horizontal_margin</item>
+		<item name="android:layout_marginTop">@dimen/activity_vertical_margin</item>
+		<item name="android:layout_marginBottom">@dimen/activity_vertical_margin</item>
+	</style>
+
+	<style name="GTS.Margin.Horizontal">
+		<item name="android:layout_marginStart">@dimen/activity_horizontal_margin</item>
+		<item name="android:layout_marginEnd">@dimen/activity_horizontal_margin</item>
+	</style>
+
+	<style name="GTS.Margin.Horizontal.Small">
+		<item name="android:layout_marginStart">@dimen/spacing_small</item>
+		<item name="android:layout_marginEnd">@dimen/spacing_small</item>
+	</style>
+
+	<style name="GTS.Margin.Start">
+		<item name="android:layout_marginStart">@dimen/activity_horizontal_margin</item>
+	</style>
+
+	<style name="GTS.Margin.Start.Small">
+		<item name="android:layout_marginStart">@dimen/spacing_small</item>
+	</style>
+
+	<style name="GTS.Margin.End">
+		<item name="android:layout_marginEnd">@dimen/activity_horizontal_margin</item>
+	</style>
+
+	<style name="GTS.Margin.End.Small">
+		<item name="android:layout_marginEnd">@dimen/spacing_small</item>
+	</style>
+
+	<!-- General Text -->
+
+	<style name="GTS.TextAppearance.Subheader.Divider.Padded" parent="GTS.TextAppearance.Subheader.Divider">
+		<item name="android:layout_marginTop">@dimen/spacing_small</item>
+		<item name="android:paddingStart">@dimen/spacing_small</item>
+		<item name="android:layout_marginBottom">@dimen/spacing_medium</item>
+	</style>
+
+	<!-- Divider Style -->
+
+	<style name="GTS.Divider.Pushed">
+		<item name="android:layout_marginStart">@dimen/spacing_xlarge</item>
+	</style>
+
+	<!-- Buttons -->
+
+	<style name="GTS.Button.Flat" parent="android:Widget.DeviceDefault.Button.Borderless">
+		<item name="android:gravity">start</item>
+	</style>
+
+</resources>

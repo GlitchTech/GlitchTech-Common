@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!-- Note Related Strings -->
+
+	<string name="notes">Notes</string>
+	<string name="note_count">Notes:</string>
+</resources>

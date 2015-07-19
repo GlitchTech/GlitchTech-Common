@@ -1,0 +1,136 @@
+/*
+ * Copyright (C) 2013 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.glitchtechscience.ui.colorpicker;
+
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.util.AttributeSet;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+
+import com.glitchtechscience.LibraryCore.R;
+
+/**
+ * Creates a circular swatch of a specified color.  Adds a checkmark if marked as checked.
+ */
+public class ColorPickerSwatch extends FrameLayout implements View.OnClickListener {
+
+	private int mColor;
+	private ImageView mSwatchImage;
+	private ImageView mCheckmarkImage;
+	private OnColorSelectedListener mOnColorSelectedListener;
+
+	public ColorPickerSwatch( Context context, AttributeSet attrs ) {
+
+		super( context, attrs );
+
+		preInit( context, attrs );
+	}
+
+	public ColorPickerSwatch( Context context, AttributeSet attrs, int defStyle ) {
+
+		super( context, attrs, defStyle );
+
+		preInit( context, attrs );
+	}
+
+	public ColorPickerSwatch( Context context, int color, boolean checked, OnColorSelectedListener listener ) {
+
+		super( context );
+
+		init( context, color, checked, listener );
+	}
+
+	private void preInit( Context context, AttributeSet attrs ) {
+
+		// Get animation parameters
+		TypedArray array = context.obtainStyledAttributes( attrs, R.styleable.colorPickerSwatch, 0, 0 );
+
+		int color = array.getInt( R.styleable.colorPickerSwatch_android_color, android.R.color.black );
+		boolean checked = array.getBoolean( R.styleable.colorPickerSwatch_android_checked, false );
+
+		// Recycle array
+		array.recycle();
+
+		init( context, color, checked, null );
+	}
+
+	private void init( Context context, int color, boolean checked, OnColorSelectedListener listener ) {
+
+		mColor = color;
+		mOnColorSelectedListener = listener;
+
+		LayoutInflater.from( context ).inflate( R.layout.color_picker_swatch, this );
+
+		mSwatchImage = (ImageView) findViewById( R.id.color_picker_swatch );
+		mCheckmarkImage = (ImageView) findViewById( R.id.color_picker_checkmark );
+
+		setColor( color );
+		setChecked( checked );
+		setOnClickListener( this );
+	}
+
+	protected void setColor( int color ) {
+
+		Drawable[] colorDrawable;
+
+		if( Build.VERSION.SDK_INT < 21 ) {
+
+			colorDrawable = new Drawable[]{ getContext().getResources().getDrawable( R.drawable.color_picker_swatch ) };
+		} else {
+
+			colorDrawable = new Drawable[]{ getContext().getResources().getDrawable( R.drawable.color_picker_swatch, null ) };
+		}
+
+		mSwatchImage.setImageDrawable( new ColorStateDrawable( colorDrawable, color ) );
+	}
+
+	private void setChecked( boolean checked ) {
+
+		if( checked ) {
+
+			mCheckmarkImage.setVisibility( View.VISIBLE );
+		} else {
+
+			mCheckmarkImage.setVisibility( View.GONE );
+		}
+	}
+
+	@Override
+	public void onClick( View v ) {
+
+		if( mOnColorSelectedListener != null ) {
+
+			mOnColorSelectedListener.onColorSelected( mColor );
+		}
+	}
+
+	/**
+	 * Interface for a callback when a color square is selected.
+	 */
+	public interface OnColorSelectedListener {
+
+		/**
+		 * Called when a specific color square has been selected.
+		 */
+		void onColorSelected( int color );
+	}
+}
