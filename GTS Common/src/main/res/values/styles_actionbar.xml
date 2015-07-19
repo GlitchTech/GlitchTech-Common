@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!-- style for the action bar -->
+	<style name="action_bar_spinner_primary_text">
+		<item name="android:textSize">16sp</item>
+		<item name="android:singleLine">true</item>
+		<item name="android:ellipsize">end</item>
+		<item name="android:includeFontPadding">false</item>
+	</style>
+
+	<style name="action_bar_spinner_secondary_text" parent="android:style/TextAppearance.Holo.Widget.ActionBar.Subtitle">
+		<item name="android:singleLine">true</item>
+		<item name="android:ellipsize">end</item>
+		<item name="android:includeFontPadding">false</item>
+	</style>
+
+	<style name="balanceDropDownItemStyle" parent="android:TextAppearance.Widget.TextView.SpinnerItem"/>
+
+</resources>

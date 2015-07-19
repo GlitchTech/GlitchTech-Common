@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!-- Namespace for App Styles -->
+
+	<style name="GTS"/>
+
+	<!-- Generalized Padding/Margins -->
+
+	<style name="GTS.Padding"/>
+
+	<style name="GTS.Padding.All">
+		<item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
+		<item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
+		<item name="android:paddingTop">@dimen/activity_vertical_margin</item>
+		<item name="android:paddingBottom">@dimen/activity_vertical_margin</item>
+	</style>
+
+	<style name="GTS.Padding.Horizontal">
+		<item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
+		<item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
+	</style>
+
+	<style name="GTS.Padding.Horizontal.Small">
+		<item name="android:paddingLeft">@dimen/spacing_small</item>
+		<item name="android:paddingRight">@dimen/spacing_small</item>
+	</style>
+
+	<style name="GTS.Padding.Vertical">
+		<item name="android:paddingTop">@dimen/activity_vertical_margin</item>
+		<item name="android:paddingBottom">@dimen/activity_vertical_margin</item>
+	</style>
+
+	<style name="GTS.Padding.Start">
+		<item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
+	</style>
+
+	<style name="GTS.Padding.End">
+		<item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
+	</style>
+
+	<style name="GTS.Padding.Top">
+		<item name="android:paddingTop">@dimen/activity_vertical_margin</item>
+	</style>
+
+	<style name="GTS.Padding.Bottom">
+		<item name="android:paddingBottom">@dimen/activity_vertical_margin</item>
+	</style>
+
+	<style name="GTS.Margin"/>
+
+	<style name="GTS.Margin.All">
+		<item name="android:layout_marginLeft">@dimen/activity_horizontal_margin</item>
+		<item name="android:layout_marginRight">@dimen/activity_horizontal_margin</item>
+		<item name="android:layout_marginTop">@dimen/activity_vertical_margin</item>
+		<item name="android:layout_marginBottom">@dimen/activity_vertical_margin</item>
+	</style>
+
+	<style name="GTS.Margin.Horizontal">
+		<item name="android:layout_marginLeft">@dimen/activity_horizontal_margin</item>
+		<item name="android:layout_marginRight">@dimen/activity_horizontal_margin</item>
+	</style>
+
+	<style name="GTS.Margin.Horizontal.Small">
+		<item name="android:layout_marginLeft">@dimen/spacing_small</item>
+		<item name="android:layout_marginRight">@dimen/spacing_small</item>
+	</style>
+
+	<style name="GTS.Margin.Vertical">
+		<item name="android:layout_marginTop">@dimen/activity_vertical_margin</item>
+		<item name="android:layout_marginBottom">@dimen/activity_vertical_margin</item>
+	</style>
+
+	<style name="GTS.Margin.Start">
+		<item name="android:layout_marginLeft">@dimen/activity_horizontal_margin</item>
+	</style>
+
+	<style name="GTS.Margin.Start.Small">
+		<item name="android:layout_marginLeft">@dimen/spacing_small</item>
+	</style>
+
+	<style name="GTS.Margin.End">
+		<item name="android:layout_marginRight">@dimen/activity_horizontal_margin</item>
+	</style>
+
+	<style name="GTS.Margin.End.Small">
+		<item name="android:layout_marginRight">@dimen/spacing_small</item>
+	</style>
+
+	<style name="GTS.Margin.Top">
+		<item name="android:layout_marginTop">@dimen/activity_vertical_margin</item>
+	</style>
+
+	<style name="GTS.Margin.Top.Small">
+		<item name="android:layout_marginTop">@dimen/spacing_small</item>
+	</style>
+
+	<style name="GTS.Margin.Bottom">
+		<item name="android:layout_marginBottom">@dimen/activity_vertical_margin</item>
+	</style>
+
+	<style name="GTS.Margin.Bottom.Small">
+		<item name="android:layout_marginBottom">@dimen/spacing_small</item>
+	</style>
+
+	<!-- General Text -->
+
+	<style name="GTS.TextAppearance" parent="android:TextAppearance.Small">
+		<item name="android:fontFamily">sans-serif</item>
+	</style>
+
+	<style name="GTS.TextAppearance.Display" parent="GTS.TextAppearance">
+		<item name="android:textColor">@color/Black.54</item>
+	</style>
+
+	<style name="GTS.TextAppearance.Display.4" parent="GTS.TextAppearance.Display">
+		<item name="android:fontFamily">sans-serif-light</item>
+		<item name="android:textSize">112sp</item>
+		<item name="android:singleLine">true</item>
+	</style>
+
+	<style name="GTS.TextAppearance.Display.3" parent="GTS.TextAppearance.Display">
+		<item name="android:textSize">56sp</item>
+		<item name="android:singleLine">true</item>
+	</style>
+
+	<style name="GTS.TextAppearance.Display.2" parent="GTS.TextAppearance.Display">
+		<item name="android:textSize">45sp</item>
+	</style>
+
+	<style name="GTS.TextAppearance.Display.1" parent="GTS.TextAppearance.Display">
+		<item name="android:textSize">34sp</item>
+	</style>
+
+	<style name="GTS.TextAppearance.Headline" parent="GTS.TextAppearance">
+		<item name="android:textSize">24sp</item>
+		<item name="android:textColor">@color/Black.87</item>
+	</style>
+
+	<style name="GTS.TextAppearance.Title" parent="GTS.TextAppearance">
+		<item name="android:fontFamily">sans-serif-medium</item>
+		<item name="android:textSize">20sp</item>
+		<item name="android:singleLine">true</item>
+		<item name="android:textColor">@color/Black.87</item>
+	</style>
+
+	<style name="GTS.TextAppearance.Title.Padded" parent="GTS.TextAppearance.Title">
+		<item name="android:paddingLeft">@dimen/spacing_small</item>
+		<item name="android:paddingRight">@dimen/spacing_small</item>
+		<item name="android:paddingTop">@dimen/spacing_small</item>
+		<item name="android:paddingBottom">@dimen/spacing_small</item>
+	</style>
+
+	<style name="GTS.TextAppearance.Subheader" parent="GTS.TextAppearance">
+		<item name="android:textSize">16sp</item>
+		<item name="android:textColor">@color/Black.87</item>
+	</style>
+
+	<style name="GTS.TextAppearance.Subheader.Divider" parent="GTS.TextAppearance.Subheader">
+		<item name="android:textColor">@color/Black.75</item>
+		<item name="android:layout_width">fill_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:background">@drawable/border_top_grey</item>
+	</style>
+
+	<style name="GTS.TextAppearance.Subheader.Divider.Padded" parent="GTS.TextAppearance.Subheader.Divider">
+		<item name="android:layout_marginTop">@dimen/spacing_small</item>
+		<item name="android:paddingLeft">@dimen/spacing_small</item>
+		<item name="android:layout_marginBottom">@dimen/spacing_medium</item>
+	</style>
+
+	<style name="GTS.TextAppearance.Body1" parent="GTS.TextAppearance">
+		<item name="android:textSize">14sp</item>
+		<item name="android:textColor">@color/Black.87</item>
+	</style>
+
+	<style name="GTS.TextAppearance.Body2" parent="GTS.TextAppearance.Body1">
+		<item name="android:fontFamily">sans-serif-medium</item>
+	</style>
+
+	<style name="GTS.TextAppearance.Caption" parent="GTS.TextAppearance">
+		<item name="android:textSize">12sp</item>
+		<item name="android:singleLine">true</item>
+		<item name="android:textColor">@color/Black.54</item>
+	</style>
+
+	<style name="GTS.TextAppearance.Caption.Small" parent="GTS.TextAppearance.Caption">
+		<item name="android:textSize">10sp</item>
+	</style>
+
+	<!-- Divider Style -->
+
+	<style name="GTS.Divider">
+		<item name="android:layout_width">fill_parent</item>
+		<item name="android:layout_height">1px</item>
+		<item name="android:background">@android:color/darker_gray</item>
+		<item name="android:layout_marginTop">@dimen/spacing_small</item>
+		<item name="android:layout_marginBottom">@dimen/spacing_small</item>
+	</style>
+
+	<style name="GTS.Divider.Pushed">
+		<item name="android:layout_marginLeft">@dimen/spacing_xlarge</item>
+	</style>
+
+	<!-- Sidebar Navigation -->
+
+	<style name="GTS.Sidebar"/>
+
+	<style name="GTS.Sidebar.AppBranding" parent="android:TextAppearance.Large">
+		<item name="android:textStyle">bold</item>
+		<item name="android:textColor">#FFFFFF</item>
+	</style>
+
+	<!-- Pager Title Strip -->
+
+	<style name="GTS.PagerTitleStrip">
+		<item name="android:paddingBottom">@dimen/spacing_tiny</item>
+		<item name="android:paddingTop">@dimen/spacing_tiny</item>
+
+		<item name="android:background">@color/Android.Purple.Dark</item>
+		<item name="android:textColor">@color/White</item>
+		<item name="android:textSize">16sp</item>
+	</style>
+
+	<!-- List Item -->
+
+	<style name="GTS.ListItem" parent="GTS.Padding.Horizontal">
+		<item name="android:gravity">center_vertical</item>
+		<item name="android:background">?android:attr/activatedBackgroundIndicator</item>
+	</style>
+
+	<style name="GTS.ListItem.3Lines" parent="GTS.ListItem">
+		<item name="android:minHeight">@dimen/row_height_three_line</item>
+	</style>
+
+	<!-- Simulated List Item -->
+
+	<style name="GTS.ListItem.Simulated" parent="GTS.ListItem">
+		<item name="android:background">?attr/selectableItemBackground</item>
+		<item name="android:clickable">true</item>
+
+		<item name="android:textColor">@color/Black.87</item>
+	</style>
+
+	<!-- Form Row -->
+
+	<style name="GTS.Form"/>
+
+	<style name="GTS.Form.Row" parent="GTS.Margin.Horizontal">
+		<item name="android:minHeight">@dimen/row_height</item>
+		<item name="android:layout_marginTop">0dp</item>
+		<item name="android:layout_marginBottom">0dp</item>
+	</style>
+
+	<!-- Buttons -->
+
+	<style name="GTS.Button"/>
+
+	<style name="GTS.Button.Flat" parent="android:Widget.DeviceDefault.Button.Borderless">
+		<item name="android:gravity">left</item>
+	</style>
+
+	<style name="GTS.Button.Flat.Body1" parent="GTS.Button.Flat">
+		<item name="android:textSize">14sp</item>
+		<item name="android:textColor">@color/Black.87</item>
+		<item name="android:textStyle">normal</item>
+	</style>
+
+</resources>

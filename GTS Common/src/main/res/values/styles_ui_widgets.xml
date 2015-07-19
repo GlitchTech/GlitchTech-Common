@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<style name="GTS.Widget"/>
+
+	<style name="GTS.Widget.Note" parent="GTS.TextAppearance">
+		<item name="android:layout_width">fill_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:textStyle">italic</item>
+	</style>
+
+	<style name="GTS.Widget.Spinner.Note" parent="GTS.Widget.Note">
+		<item name="android:layout_marginLeft">10dp</item>
+	</style>
+
+	<!-- Toggle Bar Styles -->
+
+	<style name="GTS.Widget.ToggleBar">
+		<item name="android:layout_marginBottom">@dimen/spacing_small</item>
+		<item name="android:layout_marginTop">@dimen/spacing_small</item>
+	</style>
+
+	<style name="GTS.Widget.ToggleBar.Label" parent="GTS.TextAppearance.Body2">
+	</style>
+
+	<style name="GTS.Widget.ToggleBar.Note" parent="GTS.Widget.Note">
+	</style>
+
+	<!-- Labeled Edit Text Styles -->
+
+	<style name="GTS.Widget.LabeledEditText">
+		<item name="android:layout_marginBottom">@dimen/spacing_small</item>
+	</style>
+
+	<style name="GTS.Widget.LabeledEditText.EditText" parent="@android:style/Widget.EditText">
+		<item name="android:layout_marginBottom">@dimen/spacing_small</item>
+	</style>
+
+	<style name="GTS.Widget.LabeledEditText.Label" parent="GTS.TextAppearance.Caption">
+		<item name="android:textAllCaps">true</item>
+		<item name="android:paddingTop">@dimen/spacing_medium</item>
+		<item name="android:paddingBottom">@dimen/spacing_small</item>
+	</style>
+
+	<!-- Undobar Styles -->
+
+	<style name="GTS.Widget.Undobar">
+		<item name="android:background">@color/Android.BlueGrey.Darker</item>
+		<item name="android:paddingBottom">@dimen/spacing_small</item>
+		<item name="android:paddingTop">@dimen/spacing_small</item>
+	</style>
+
+	<style name="GTS.Widget.Undobar.Message.Base" parent="android:TextAppearance.Medium">
+		<item name="android:singleLine">true</item>
+		<item name="android:textColor">@color/White</item>
+	</style>
+
+	<style name="GTS.Widget.Undobar.Message" parent="GTS.Widget.Undobar.Message.Base">
+		<item name="android:layout_marginLeft">@dimen/spacing_small</item>
+		<item name="android:layout_marginRight">@dimen/spacing_small</item>
+	</style>
+
+	<style name="GTS.Widget.Undobar.Icon.Base" parent="GTS.TextAppearance">
+		<item name="android:singleLine">true</item>
+		<item name="android:textAllCaps">true</item>
+		<item name="android:textColor">@color/Android.Orange</item>
+		<item name="android:drawablePadding">@dimen/spacing_small</item>
+	</style>
+
+	<style name="GTS.Widget.Undobar.Icon" parent="GTS.Widget.Undobar.Icon.Base">
+		<item name="android:layout_marginLeft">0dp</item>
+		<item name="android:layout_marginRight">@dimen/spacing_small</item>
+		<item name="android:drawableLeft">@drawable/undo_white_36dp</item>
+	</style>
+</resources>

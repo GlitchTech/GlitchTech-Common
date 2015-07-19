@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!-- Undobar Styles -->
+
+	<style name="GTS.Widget.Undobar.Message" parent="GTS.Widget.Undobar.Message.Base">
+		<item name="android:layout_marginStart">@dimen/spacing_small</item>
+		<item name="android:layout_marginEnd">@dimen/spacing_small</item>
+	</style>
+
+	<style name="GTS.Widget.Undobar.Icon" parent="GTS.Widget.Undobar.Icon.Base">
+		<item name="android:layout_marginStart">0dp</item>
+		<item name="android:layout_marginEnd">@dimen/spacing_small</item>
+		<item name="android:drawableStart">@drawable/undo_white_36dp</item>
+	</style>
+
+</resources>
