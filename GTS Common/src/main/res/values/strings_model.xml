@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-	<!-- Model Related Strings -->
-
-	<string name="model_activity">Models</string>
-	<string name="model_count">Models:</string>
-</resources>

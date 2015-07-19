@@ -22,7 +22,7 @@
         android:id="@+id/color_picker_checkmark"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/ic_colorpicker_swatch_selected"
+        android:src="@drawable/colorpicker_swatch_selected"
         android:scaleType="fitXY"
         android:visibility="gone" />
 </merge>
