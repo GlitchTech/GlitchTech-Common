@@ -37,9 +37,15 @@
 	<string name="search">Search</string>
 	<string name="refresh">Refresh</string>
 
-	<!-- Place Holders -->
+	<!-- Misc App -->
+	<string name="deleted">Deleted</string>
+	<string name="loading">Loading…</string>
+	<string name="remove_dash">-</string>
+	<string name="toggle">Toggle View</string>
+
 	<string name="generic_empty_list">No list content available.</string>
 
+	<!-- Place Holders -->
 	<string name="dummy_title">Title of the Thing</string>
 	<string name="dummy_number">15</string>
 	<string name="dummy_date">01/01/2015</string>
