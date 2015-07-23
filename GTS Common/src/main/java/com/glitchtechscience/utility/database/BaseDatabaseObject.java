@@ -13,11 +13,33 @@ public abstract class BaseDatabaseObject {
 
 	/** Common field for all database objects */
 
+	/** DatabaseColumn( INTEGER UNIQUE PRIMARY KEY ASC ) */
+	private long id = -1;
+
 	/** DatabaseColumn( TEXT ) */
 	protected long lastSync;
 
 	/** pendingDeletion INTEGER NOT NULL DEFAULT 0 */
 	protected int pendingDeletion = 0;
+
+	/* ----- ----- ----- */
+
+	/**
+	 * @return long
+	 */
+	public long getId() {
+
+		return this.id;
+	}
+
+	/**
+	 * @param id
+	 * 		ID of object of type long
+	 */
+	public void setId( long id ) {
+
+		this.id = id;
+	}
 
 	/**
 	 * @return timestamp of last server sync
@@ -74,24 +96,51 @@ public abstract class BaseDatabaseObject {
 		this.pendingDeletion = pendingDeletion ? 1 : 0;
 	}
 
-	//////////////////////////////////
+	/* ----- ----- ----- */
 
+	/**
+	 * Constructor
+	 */
 	public BaseDatabaseObject() {
 
 	}
 
-	public abstract Context getContext();
+	/* ----- ----- ----- */
 
+	/**
+	 * Return the content resolver. Requires the abstract method getContext()
+	 *
+	 * @return ContentResolver
+	 */
 	protected android.content.ContentResolver getContentResolver() {
 
 		return getContext().getContentResolver();
 	}
 
+	/* ----- ----- ----- */
+
+	/**
+	 * Load the current object from the database.
+	 */
 	public void load() {
 
 		load( getProjection(), getSelection(), getSelectionArgs(), getSortOrder(), "1" );
 	}
 
+	/**
+	 * Load the current object from the database.
+	 *
+	 * @param projection
+	 * 		String[]   parameters to retrieve
+	 * @param selection
+	 * 		String  Where string
+	 * @param selectionArgs
+	 * 		String[]    Where arguments in array
+	 * @param sortOrder
+	 * 		String  Sort pattern string
+	 * @param limit
+	 * 		String  Selection limits
+	 */
 	public void load( String[] projection, String selection, String[] selectionArgs, String sortOrder, String limit ) {
 
 		Uri uri = getUri().buildUpon().appendQueryParameter( "limit", limit ).build();
@@ -104,13 +153,18 @@ public abstract class BaseDatabaseObject {
 		}
 	}
 
+	/**
+	 * Save the current object to the database
+	 *
+	 * @return number of rows touched
+	 */
 	public int save() {
 
 		if( getId() < 0 ) {
 
 			ContentValues data = getData();
 
-			data.remove( getFieldId() );
+			data.remove( getIdFieldName() );
 
 			return insert( data );
 		} else {
@@ -119,6 +173,14 @@ public abstract class BaseDatabaseObject {
 		}
 	}
 
+	/**
+	 * Insert current object into database
+	 *
+	 * @param data
+	 * 		ContentValues
+	 *
+	 * @return number of rows touched
+	 */
 	public int insert( ContentValues data ) {
 
 		Uri result = getContentResolver().insert( getUri(), data );
@@ -131,6 +193,11 @@ public abstract class BaseDatabaseObject {
 		return 1;
 	}
 
+	/**
+	 * Updates current record of this object.
+	 *
+	 * @return number of rows touched
+	 */
 	public int update() {
 
 		int numUpdated = getContentResolver().update( getUri(), getData(), getSelection(), getSelectionArgs() );
@@ -139,6 +206,11 @@ public abstract class BaseDatabaseObject {
 		return numUpdated;
 	}
 
+	/**
+	 * Removes current object from database
+	 *
+	 * @return number of rows touched
+	 */
 	public int delete() {
 
 		int numDeleted = getContentResolver().delete( getUri(), getSelection(), getSelectionArgs() );
@@ -147,6 +219,30 @@ public abstract class BaseDatabaseObject {
 		return numDeleted;
 	}
 
+	/* ----- ----- ----- */
+
+	/**
+	 * Returns ContentValues version of object.
+	 *
+	 * @return ContentValues
+	 */
+	public ContentValues getData() {
+
+		ContentValues data = new ContentValues();
+
+		data.put( getIdFieldName(), this.getId() );
+		data.put( "lastSync", this.getLastSync() );
+		data.put( "pendingDeletion", this.getPendingDeletion() ? 1 : 0 );
+
+		return data;
+	}
+
+	/**
+	 * Loads data from Cursor into object
+	 *
+	 * @param c
+	 * 		Cursor
+	 */
 	public void setData( Cursor c ) {
 
 		ContentValues data = new ContentValues();
@@ -164,35 +260,18 @@ public abstract class BaseDatabaseObject {
 		setData( data );
 	}
 
-	protected boolean isCVValueLong( ContentValues data, String key ) {
-
-		return ( data.containsKey( key ) && data.getAsLong( key ) != null );
-	}
-
 	/**
-	 * (Mostly) Abstract methods; must be overridden
+	 * Loads data from ContentValues into object
+	 *
+	 * @param data
+	 * 		ContentValues
 	 */
-
-	// TODO add abstract method descriptions
-	public abstract long getId();
-
-	protected abstract void setId( long id );
-
-	protected abstract String getFieldId();
-
-	public abstract Uri getUri();
-
-	public ContentValues getData() {
-
-		ContentValues data = new ContentValues();
-
-		data.put( "lastSync", this.getLastSync() );
-		data.put( "pendingDeletion", this.getPendingDeletion() ? 1 : 0 );
-
-		return data;
-	}
-
 	public void setData( ContentValues data ) {
+
+		if( data.containsKey( getIdFieldName() ) ) {
+
+			this.setId( data.getAsLong( getIdFieldName() ) );
+		}
 
 		if( this.isCVValueLong( data, "lastSync" ) ) {
 
@@ -205,11 +284,105 @@ public abstract class BaseDatabaseObject {
 		}
 	}
 
+	/**
+	 * Helper method to determine if key is in ContentValues and key contains a long
+	 *
+	 * @param data
+	 * 		ContentValue
+	 * @param key
+	 * 		String
+	 *
+	 * @return True if valid long
+	 */
+	protected boolean isCVValueLong( ContentValues data, String key ) {
+
+		return ( data.containsKey( key ) && data.getAsLong( key ) != null );
+	}
+
+	/* ----- ----- ----- */
+
+	/**
+	 * Returns database field name of ID variable
+	 *
+	 * @return String
+	 */
+	public String getIdFieldName() {
+
+		return "id";
+	}
+
+	/**
+	 * Returns basic find string
+	 *
+	 * @return String
+	 */
+	public String getSelection() {
+
+		return getIdFieldName() + " = ?";
+	}
+
+	/**
+	 * Returns argument list for the basic find string
+	 *
+	 * @return String[]
+	 */
+	public String[] getSelectionArgs() {
+
+		return new String[]{ this.getId() + "" };
+	}
+
+	/* ----- ----- ----- */
+
+	/**
+	 * (Mostly) Abstract methods; must be overridden
+	 */
+
+	// TODO add abstract method descriptions
+	public abstract Context getContext();
+
+	/**
+	 * Return ContentProvider Uri for object
+	 *
+	 * @return Uri
+	 */
+	public abstract Uri getUri();
+
+	/**
+	 * Return a string array containing all fields to be retrieved from the database
+	 *
+	 * @return String[]
+	 */
 	public abstract String[] getProjection();
 
-	public abstract String getSelection();
-
-	public abstract String[] getSelectionArgs();
-
+	/**
+	 * Return a string containing the ORDER BY argument.
+	 *
+	 * @return String
+	 */
 	public abstract String getSortOrder();
+
+	/* ----- ----- ----- */
+
+	/**
+	 * Adds base projection fields to the array
+	 *
+	 * @param childProjection
+	 * 		String[]
+	 *
+	 * @return String[]
+	 */
+	protected String[] addBaseProjection( String[] childProjection ) {
+
+		String[] superProjection = new String[]{ getIdFieldName() + " AS _id", getIdFieldName(), "queuedForDeletion", "lastSync" };
+
+		int superLength = superProjection.length;
+		int childLength = childProjection.length;
+
+		String[] mergedProjection = new String[superLength + childLength];
+
+		System.arraycopy( superProjection, 0, mergedProjection, 0, superLength );
+		System.arraycopy( childProjection, 0, mergedProjection, superLength, childLength );
+
+		return mergedProjection;
+	}
 }
