@@ -13,6 +13,9 @@ public abstract class BaseDatabaseObject {
 
 	/** Common field for all database objects */
 
+	/** Schema for BaseDatabaseObject db fields */
+	public final static String COMMON_FIELD_SCHEMA = "id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, lastSync INTEGER, pendingDeletion INTEGER NOT NULL DEFAULT 0";
+
 	/** DatabaseColumn( INTEGER UNIQUE PRIMARY KEY ASC ) */
 	private long id = -1;
 
@@ -373,7 +376,7 @@ public abstract class BaseDatabaseObject {
 	 */
 	protected String[] addBaseProjection( String[] childProjection ) {
 
-		String[] superProjection = new String[]{ getIdFieldName() + " AS _id", getIdFieldName(), "queuedForDeletion", "lastSync" };
+		String[] superProjection = new String[]{ getIdFieldName() + " AS _id", getIdFieldName(), "pendingDeletion", "lastSync" };
 
 		int superLength = superProjection.length;
 		int childLength = childProjection.length;
