@@ -1,8 +1,5 @@
 package com.glitchtechscience.utility;
 
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-
 import java.security.SecureRandom;
 
 import javax.crypto.Cipher;
@@ -95,38 +92,5 @@ public class Security {
 
 		sb.append( HEX.charAt( ( b >> 4 ) & 0x0f ) )
 				.append( HEX.charAt( b & 0x0f ) );
-	}
-
-	public String encrypt( SQLiteDatabase db, String text ) {
-
-		try {
-
-			return encrypt( getSpike( db ), text );
-		} catch( Exception ex ) {
-
-			return "";
-		}
-	}
-
-	public String decrypt( SQLiteDatabase db, String text ) {
-
-		try {
-
-			return decrypt( getSpike( db ), text );
-		} catch( Exception ex ) {
-
-			return "";
-		}
-	}
-
-	private String getSpike( SQLiteDatabase db ) {
-
-		Cursor results = db.query( "prefs", new String[]{ "spike" }, "", new String[]{ }, "", "", "", "1" );
-
-		results.moveToFirst();
-		String spike = results.getString( results.getColumnIndex( "spike" ) );
-		results.close();
-
-		return spike;
 	}
 }
