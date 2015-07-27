@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<style name="GTS.Widget"/>
+	<style name="GTS.Widget" />
 
 	<style name="GTS.Widget.Note" parent="GTS.TextAppearance">
 		<item name="android:layout_width">fill_parent</item>
@@ -10,7 +10,9 @@
 	</style>
 
 	<style name="GTS.Widget.Spinner.Note" parent="GTS.Widget.Note">
-		<item name="android:layout_marginLeft">10dp</item>
+		<item name="android:layout_marginLeft">20dp</item>
+		<item name="android:layout_marginTop">-10dp</item>
+		<item name="android:layout_marginBottom">5dp</item>
 	</style>
 
 	<!-- Toggle Bar Styles -->

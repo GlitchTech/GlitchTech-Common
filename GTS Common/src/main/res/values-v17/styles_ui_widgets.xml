@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+
+	<style name="GTS.Widget.Spinner.Note" parent="GTS.Widget.Note">
+		<item name="android:layout_marginStart">20dp</item>
+		<item name="android:layout_marginTop">-10dp</item>
+		<item name="android:layout_marginBottom">5dp</item>
+	</style>
+
 	<!-- Undobar Styles -->
 
 	<style name="GTS.Widget.Undobar.Message" parent="GTS.Widget.Undobar.Message.Base">
