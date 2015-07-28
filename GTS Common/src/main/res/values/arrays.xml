@@ -6,14 +6,21 @@
 		<item>@color/Android.Pink</item>
 		<item>@color/Android.Purple</item>
 		<item>@color/Android.DeepPurple</item>
+
 		<item>@color/Android.Indigo</item>
 		<item>@color/Android.Blue</item>
 		<item>@color/Android.Cyan</item>
 		<item>@color/Android.Teal</item>
+
 		<item>@color/Android.Green</item>
 		<item>@color/Android.Lime</item>
 		<item>@color/Android.Yellow</item>
 		<item>@color/Android.Amber</item>
+
+		<item>@color/Black</item>
+		<item>@color/White</item>
+		<item>@color/Android.Grey</item>
+		<item>@color/Android.Brown</item>
 	</array>
 
 </resources>
