@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.net.Uri;
-import android.util.Log;
 
 import java.util.Calendar;
 
@@ -15,6 +14,9 @@ public abstract class BaseDatabaseObject {
 
 	/** Schema for BaseDatabaseObject db fields */
 	public final static String COMMON_FIELD_SCHEMA = "id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, lastSync INTEGER, pendingDeletion INTEGER NOT NULL DEFAULT 0";
+	public final static String ID_FIELD = "id";
+	public final static String LAST_SYNC_FIELD = "lastSync";
+	public final static String PENDING_DELETION_FIELD = "pendingDeletion";
 
 	/** DatabaseColumn( INTEGER UNIQUE PRIMARY KEY ASC ) */
 	private long id = -1;
@@ -167,7 +169,7 @@ public abstract class BaseDatabaseObject {
 
 			ContentValues data = getData();
 
-			data.remove( getIdFieldName() );
+			data.remove( ID_FIELD );
 
 			return insert( data );
 		} else {
@@ -203,10 +205,7 @@ public abstract class BaseDatabaseObject {
 	 */
 	public int update() {
 
-		int numUpdated = getContentResolver().update( getUri(), getData(), getSelection(), getSelectionArgs() );
-		Log.d( "Save", "Count: " + numUpdated );
-
-		return numUpdated;
+		return getContentResolver().update( getUri(), getData(), getSelection(), getSelectionArgs() );
 	}
 
 	/**
@@ -216,10 +215,7 @@ public abstract class BaseDatabaseObject {
 	 */
 	public int delete() {
 
-		int numDeleted = getContentResolver().delete( getUri(), getSelection(), getSelectionArgs() );
-		Log.d( "Delete", "Count: " + numDeleted );
-
-		return numDeleted;
+		return getContentResolver().delete( getUri(), getSelection(), getSelectionArgs() );
 	}
 
 	/* ----- ----- ----- */
@@ -233,9 +229,9 @@ public abstract class BaseDatabaseObject {
 
 		ContentValues data = new ContentValues();
 
-		data.put( getIdFieldName(), this.getId() );
-		data.put( "lastSync", this.getLastSync() );
-		data.put( "pendingDeletion", this.getPendingDeletion() ? 1 : 0 );
+		data.put( ID_FIELD, this.getId() );
+		data.put( LAST_SYNC_FIELD, this.getLastSync() );
+		data.put( PENDING_DELETION_FIELD, this.getPendingDeletion() ? 1 : 0 );
 
 		return data;
 	}
@@ -271,19 +267,19 @@ public abstract class BaseDatabaseObject {
 	 */
 	public void setData( ContentValues data ) {
 
-		if( data.containsKey( getIdFieldName() ) ) {
+		if( data.containsKey( ID_FIELD ) ) {
 
-			this.setId( data.getAsLong( getIdFieldName() ) );
+			this.setId( data.getAsLong( ID_FIELD ) );
 		}
 
-		if( this.isCVValueLong( data, "lastSync" ) ) {
+		if( this.isCVValueLong( data, LAST_SYNC_FIELD ) ) {
 
-			this.setLastSync( data.getAsLong( "lastSync" ) );
+			this.setLastSync( data.getAsLong( LAST_SYNC_FIELD ) );
 		}
 
-		if( data.containsKey( "pendingDeletion" ) ) {
+		if( data.containsKey( PENDING_DELETION_FIELD ) ) {
 
-			this.setPendingDeletion( 1 == data.getAsInteger( "pendingDeletion" ) );
+			this.setPendingDeletion( 1 == data.getAsInteger( PENDING_DELETION_FIELD ) );
 		}
 	}
 
@@ -305,23 +301,13 @@ public abstract class BaseDatabaseObject {
 	/* ----- ----- ----- */
 
 	/**
-	 * Returns database field name of ID variable
-	 *
-	 * @return String
-	 */
-	public String getIdFieldName() {
-
-		return "id";
-	}
-
-	/**
 	 * Returns basic find string
 	 *
 	 * @return String
 	 */
 	public String getSelection() {
 
-		return getIdFieldName() + " = ?";
+		return ID_FIELD + " = ?";
 	}
 
 	/**
@@ -341,6 +327,12 @@ public abstract class BaseDatabaseObject {
 	 */
 
 	// TODO add abstract method descriptions
+
+	/**
+	 * Return current context
+	 *
+	 * @return Context
+	 */
 	public abstract Context getContext();
 
 	/**
@@ -376,7 +368,7 @@ public abstract class BaseDatabaseObject {
 	 */
 	protected String[] addBaseProjection( String[] childProjection ) {
 
-		String[] superProjection = new String[]{ getIdFieldName() + " AS _id", getIdFieldName(), "pendingDeletion", "lastSync" };
+		String[] superProjection = new String[]{ ID_FIELD + " AS _id", ID_FIELD, PENDING_DELETION_FIELD, LAST_SYNC_FIELD };
 
 		int superLength = superProjection.length;
 		int childLength = childProjection.length;
