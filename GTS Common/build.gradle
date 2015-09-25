@@ -1,15 +1,18 @@
 apply plugin: 'com.android.library'
 
 android {
-	compileSdkVersion 22
+	compileSdkVersion 23
 	buildToolsVersion "22.0.1"
 
 	defaultConfig {
 		minSdkVersion 16
-		targetSdkVersion 22
+		targetSdkVersion 23
 		versionCode 1
 		versionName "1.0"
 	}
+
+	defaultPublishConfig "debug"
+
 	buildTypes {
 		debug {
 			debuggable true
@@ -25,8 +28,9 @@ dependencies {
 	compile fileTree( dir: 'libs', include: ['*.jar'] )
 
 	//** Google Support Libraries
-	compile 'com.android.support:support-v4:22.1.1'
-	compile 'com.android.support:appcompat-v7:22.1.1'
+	compile 'com.android.support:support-v4:23.0.1'
+	compile 'com.android.support:appcompat-v7:23.0.1'
+	compile 'com.android.support:recyclerview-v7:23.0.1'
 
 	// https://github.com/futuresimple/android-floating-action-button
 	compile 'com.getbase:floatingactionbutton:1.2.0'
