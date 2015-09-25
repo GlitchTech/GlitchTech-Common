@@ -30,6 +30,7 @@ dependencies {
 	//** Google Support Libraries
 	compile 'com.android.support:support-v4:23.0.1'
 	compile 'com.android.support:appcompat-v7:23.0.1'
+	compile 'com.android.support:recyclerview-v7:23.0.1'
 
 	// https://github.com/futuresimple/android-floating-action-button
 	compile 'com.getbase:floatingactionbutton:1.2.0'
