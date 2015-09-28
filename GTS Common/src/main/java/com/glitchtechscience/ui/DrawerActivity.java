@@ -2,6 +2,7 @@ package com.glitchtechscience.ui;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.Gravity;
@@ -39,7 +40,7 @@ public abstract class DrawerActivity extends BaseActivity {
 
 		switch( item.getItemId() ) {
 			case android.R.id.home:
-				drawer.openDrawer( Gravity.START );
+				drawer.openDrawer( GravityCompat.START );
 				return true;
 		}
 
@@ -63,7 +64,7 @@ public abstract class DrawerActivity extends BaseActivity {
 	@Override
 	public void onBackPressed() {
 
-		if( drawer.isDrawerOpen( Gravity.START ) ) {
+		if( drawer.isDrawerOpen( GravityCompat.START ) ) {
 
 			drawer.closeDrawers();
 			return;
