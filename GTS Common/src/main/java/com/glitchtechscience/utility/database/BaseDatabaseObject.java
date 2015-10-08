@@ -1,5 +1,6 @@
 package com.glitchtechscience.utility.database;
 
+import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -125,16 +126,29 @@ public abstract class BaseDatabaseObject {
 	/* ----- ----- ----- */
 
 	/**
-	 * Load the current object from the database.
+	 * @see BaseDatabaseObject#load(ContentResolver)
 	 */
 	public void load() {
 
-		load( getProjection(), getSelection(), getSelectionArgs(), getSortOrder(), "1" );
+		load( getContentResolver() );
+	}
+
+	/**
+	 * @param cr
+	 * 		ContentResolver
+	 *
+	 * @see BaseDatabaseObject#load(ContentResolver, String[], String, String[], String, String)
+	 */
+	public void load( ContentResolver cr ) {
+
+		load( cr, getProjection(), getSelection(), getSelectionArgs(), getSortOrder(), "1" );
 	}
 
 	/**
 	 * Load the current object from the database.
 	 *
+	 * @param cr
+	 * 		ContentResolver
 	 * @param projection
 	 * 		String[]   parameters to retrieve
 	 * @param selection
@@ -146,24 +160,37 @@ public abstract class BaseDatabaseObject {
 	 * @param limit
 	 * 		String  Selection limits
 	 */
-	public void load( String[] projection, String selection, String[] selectionArgs, String sortOrder, String limit ) {
+	public void load( ContentResolver cr, String[] projection, String selection, String[] selectionArgs, String sortOrder, String limit ) {
 
 		Uri uri = getUri().buildUpon().appendQueryParameter( "limit", limit ).build();
 
 		if( uri != null ) {
 
-			Cursor c = getContentResolver().query( uri, projection, selection, selectionArgs, sortOrder );
+			Cursor c = cr.query( uri, projection, selection, selectionArgs, sortOrder );
 
 			setData( c );
 		}
 	}
 
 	/**
+	 * @return number of rows touched
+	 *
+	 * @see BaseDatabaseObject#save(ContentResolver)
+	 */
+	public int save() {
+
+		return save( getContentResolver() );
+	}
+
+	/**
 	 * Save the current object to the database
+	 *
+	 * @param cr
+	 * 		ContentResolver
 	 *
 	 * @return number of rows touched
 	 */
-	public int save() {
+	public int save( ContentResolver cr ) {
 
 		if( getId() < 0 ) {
 
@@ -171,22 +198,37 @@ public abstract class BaseDatabaseObject {
 
 			data.remove( ID_FIELD );
 
-			return insert( data );
+			return insert( cr, data );
 		} else {
 
-			return update();
+			return update( cr );
 		}
+	}
+
+	/**
+	 * @param data
+	 * 		ContentValues
+	 *
+	 * @return number of rows touched
+	 *
+	 * @see BaseDatabaseObject#update(ContentResolver)
+	 */
+	public int insert( ContentValues data ) {
+
+		return insert( getContentResolver(), data );
 	}
 
 	/**
 	 * Insert current object into database
 	 *
+	 * @param cr
+	 * 		ContentResolver
 	 * @param data
 	 * 		ContentValues
 	 *
 	 * @return number of rows touched
 	 */
-	public int insert( ContentValues data ) {
+	public int insert( ContentResolver cr, ContentValues data ) {
 
 		Uri result = getContentResolver().insert( getUri(), data );
 
@@ -199,23 +241,49 @@ public abstract class BaseDatabaseObject {
 	}
 
 	/**
-	 * Updates current record of this object.
-	 *
 	 * @return number of rows touched
+	 *
+	 * @see BaseDatabaseObject#update(ContentResolver)
 	 */
 	public int update() {
 
-		return getContentResolver().update( getUri(), getData(), getSelection(), getSelectionArgs() );
+		return update( getContentResolver() );
+	}
+
+	/**
+	 * Updates current record of this object.
+	 *
+	 * @param cr
+	 * 		ContentResolver
+	 *
+	 * @return number of rows touched
+	 */
+	public int update( ContentResolver cr ) {
+
+		return cr.update( getUri(), getData(), getSelection(), getSelectionArgs() );
+	}
+
+	/**
+	 * @return number of rows touched
+	 *
+	 * @see BaseDatabaseObject#delete(ContentResolver)
+	 */
+	public int delete() {
+
+		return delete( getContentResolver() );
 	}
 
 	/**
 	 * Removes current object from database
 	 *
+	 * @param cr
+	 * 		ContentResolver
+	 *
 	 * @return number of rows touched
 	 */
-	public int delete() {
+	public int delete( ContentResolver cr ) {
 
-		return getContentResolver().delete( getUri(), getSelection(), getSelectionArgs() );
+		return cr.delete( getUri(), getSelection(), getSelectionArgs() );
 	}
 
 	/* ----- ----- ----- */
@@ -325,8 +393,6 @@ public abstract class BaseDatabaseObject {
 	/**
 	 * (Mostly) Abstract methods; must be overridden
 	 */
-
-	// TODO add abstract method descriptions
 
 	/**
 	 * Return current context
