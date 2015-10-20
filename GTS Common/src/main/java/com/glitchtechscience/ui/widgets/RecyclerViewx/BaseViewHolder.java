@@ -1,4 +1,4 @@
-package com.glitchtechscience.ui.widgets.RecyclerView;
+package com.glitchtechscience.ui.widgets.RecyclerViewx;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
