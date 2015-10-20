@@ -1,11 +1,11 @@
 GlitchTech Science: Common Use Library
 ======================================
 
-**Version:** 1.0.0
+**Version:** 1.2.0
 
 **Initial project launch:** 2015.07.19
 
-**Last major update:** 2015.07.19
+**Last major update:** 2015.10.20
 
 **Lead Developer:** [Matt Schott](glitchtechscience@gmail.com)
 
@@ -21,6 +21,6 @@ Version Control
 
 This project is under version control using git.
 
-[https://bitbucket.org/GlitchTechScience/glitchtech-common](https://bitbucket.org/GlitchTechScience/glitchtech-common)
+[https://github.com/GlitchTech/GlitchTech-Common](https://github.com/GlitchTech/GlitchTech-Common)
 
-`git clone git@bitbucket.org:GlitchTechScience/glitchtech-common.git`
+`git clone git@github.com:GlitchTech/GlitchTech-Common.git`
