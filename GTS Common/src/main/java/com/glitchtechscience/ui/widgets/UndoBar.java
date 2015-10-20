@@ -23,7 +23,9 @@ import com.glitchtechscience.LibraryCore.R;
  * @author Matt Schott [GlitchTechScience@gmail.com]
  * @version 2014.12.16
  * @since 1.0
+ * @deprecated Replaced with android.support.design.widget.Snackbar
  */
+@Deprecated
 public class UndoBar extends LinearLayout implements View.OnClickListener {
 
 	// Animation holder
@@ -63,8 +65,7 @@ public class UndoBar extends LinearLayout implements View.OnClickListener {
 
 		super( context, attrs );
 
-		LayoutInflater.from( context )
-				.inflate( R.layout.ui_widget_undobar, this, true );
+		LayoutInflater.from( context ).inflate( R.layout.ui_widget_undobar, this, true );
 
 		// Bind message view
 		messageView = (TextView) findViewById( R.id.ui_widget_undobar_message );
@@ -225,10 +226,7 @@ public class UndoBar extends LinearLayout implements View.OnClickListener {
 		}
 
 		// Animate view in
-		YoYo.with( Techniques.SlideInUp )
-				.duration( immediate ? 0 : mDuration )
-				.interpolate( new AccelerateDecelerateInterpolator() )
-				.playOn( this );
+		YoYo.with( Techniques.SlideInUp ).duration( immediate ? 0 : mDuration ).interpolate( new AccelerateDecelerateInterpolator() ).playOn( this );
 	}
 
 	/**
@@ -256,41 +254,37 @@ public class UndoBar extends LinearLayout implements View.OnClickListener {
 		}
 
 		// Animate view in
-		YoYo.with( Techniques.SlideOutDown )
-				.duration( immediate ? 0 : mDuration )
-				.interpolate( new AccelerateDecelerateInterpolator() )
-				.withListener( new com.nineoldandroids.animation.Animator.AnimatorListener() {
+		YoYo.with( Techniques.SlideOutDown ).duration( immediate ? 0 : mDuration ).interpolate( new AccelerateDecelerateInterpolator() ).withListener( new com.nineoldandroids.animation.Animator.AnimatorListener() {
 
-					@Override
-					public void onAnimationStart( com.nineoldandroids.animation.Animator animation ) {
+			@Override
+			public void onAnimationStart( com.nineoldandroids.animation.Animator animation ) {
 
-					}
+			}
 
-					@Override
-					public void onAnimationEnd( com.nineoldandroids.animation.Animator animation ) {
+			@Override
+			public void onAnimationEnd( com.nineoldandroids.animation.Animator animation ) {
 
-						setVisibility( View.GONE );
+				setVisibility( View.GONE );
 
-						if( !listenerFired && stateChangedListener != null ) {
+				if( !listenerFired && stateChangedListener != null ) {
 
-							stateChangedListener.onReleased( actionCompleteToken );
-						}
+					stateChangedListener.onReleased( actionCompleteToken );
+				}
 
-						listenerFired = true;
-						actionCompleteToken = null;
-					}
+				listenerFired = true;
+				actionCompleteToken = null;
+			}
 
-					@Override
-					public void onAnimationCancel( com.nineoldandroids.animation.Animator animation ) {
+			@Override
+			public void onAnimationCancel( com.nineoldandroids.animation.Animator animation ) {
 
-					}
+			}
 
-					@Override
-					public void onAnimationRepeat( com.nineoldandroids.animation.Animator animation ) {
+			@Override
+			public void onAnimationRepeat( com.nineoldandroids.animation.Animator animation ) {
 
-					}
-				} )
-				.playOn( this );
+			}
+		} ).playOn( this );
 	}
 
 	public interface onUndoBarStateChanged {
