@@ -9,47 +9,52 @@ import android.view.ViewGroup;
 import java.util.Arrays;
 import java.util.Comparator;
 
-public abstract class SectionAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+/**
+ * Adapter to allow use of sections in a RecyclerView using a GridLayoutManager.
+ *
+ * Modified some from the work Gabriele Mariotti (gabri.mariotti@gmail.com) did.
+ */
+public abstract class SectionGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-	private final Context mContext;
+	private final Context context;
 	private static final int SECTION_TYPE = 0;
 
-	private boolean mValid = true;
-	private RecyclerView.Adapter mBaseAdapter;
-	private SparseArray<Section> mSections = new SparseArray<>();
+	private boolean isValid = true;
+	private RecyclerView.Adapter baseAdapter;
+	private SparseArray<Section> sections = new SparseArray<>();
 
-	public SectionAdapter( Context context, RecyclerView recyclerView, RecyclerView.Adapter baseAdapter ) {
+	public SectionGridAdapter( Context ctx, RecyclerView recyclerView, RecyclerView.Adapter adapter ) {
 
-		mBaseAdapter = baseAdapter;
-		mContext = context;
+		baseAdapter = adapter;
+		context = ctx;
 
-		mBaseAdapter.registerAdapterDataObserver( new RecyclerView.AdapterDataObserver() {
+		this.baseAdapter.registerAdapterDataObserver( new RecyclerView.AdapterDataObserver() {
 
 			@Override
 			public void onChanged() {
 
-				mValid = mBaseAdapter.getItemCount() > 0;
+				isValid = baseAdapter.getItemCount() > 0;
 				notifyDataSetChanged();
 			}
 
 			@Override
 			public void onItemRangeChanged( int positionStart, int itemCount ) {
 
-				mValid = mBaseAdapter.getItemCount() > 0;
+				isValid = baseAdapter.getItemCount() > 0;
 				notifyItemRangeChanged( positionStart, itemCount );
 			}
 
 			@Override
 			public void onItemRangeInserted( int positionStart, int itemCount ) {
 
-				mValid = mBaseAdapter.getItemCount() > 0;
+				isValid = baseAdapter.getItemCount() > 0;
 				notifyItemRangeInserted( positionStart, itemCount );
 			}
 
 			@Override
 			public void onItemRangeRemoved( int positionStart, int itemCount ) {
 
-				mValid = mBaseAdapter.getItemCount() > 0;
+				isValid = baseAdapter.getItemCount() > 0;
 				notifyItemRangeRemoved( positionStart, itemCount );
 			}
 		} );
@@ -67,7 +72,7 @@ public abstract class SectionAdapter extends RecyclerView.Adapter<RecyclerView.V
 
 	protected Context getContext() {
 
-		return mContext;
+		return context;
 	}
 
 	@Override
@@ -78,10 +83,18 @@ public abstract class SectionAdapter extends RecyclerView.Adapter<RecyclerView.V
 			return getNewSectionViewHolder( parent );
 		} else {
 
-			return mBaseAdapter.onCreateViewHolder( parent, typeView - 1 );
+			return baseAdapter.onCreateViewHolder( parent, typeView - 1 );
 		}
 	}
 
+	/**
+	 * Return customized subclass of #RecyclerView.ViewHolder
+	 *
+	 * @param parent
+	 * 		ViewGroup
+	 *
+	 * @return RecyclerView.ViewHolder
+	 */
 	protected abstract RecyclerView.ViewHolder getNewSectionViewHolder( ViewGroup parent );
 
 	@Override
@@ -89,19 +102,37 @@ public abstract class SectionAdapter extends RecyclerView.Adapter<RecyclerView.V
 
 		if( isSectionHeaderPosition( position ) ) {
 
-			renderViewHolder( sectionViewHolder, mSections.get( position ).title.toString(), position );
+			renderViewHolder( sectionViewHolder, sections.get( position ).title.toString(), position );
 		} else {
 
-			mBaseAdapter.onBindViewHolder( sectionViewHolder, sectionedPositionToPosition( position ) );
+			baseAdapter.onBindViewHolder( sectionViewHolder, sectionedPositionToPosition( position ) );
 		}
 	}
 
+	/**
+	 * Render the content of Section header.
+	 *
+	 * @param sectionViewHolder
+	 * 		RecyclerView.ViewHolder instanced generated in #getNewSectionViewHolder()
+	 * @param title
+	 * 		String
+	 * @param position
+	 * 		int
+	 */
 	protected abstract void renderViewHolder( RecyclerView.ViewHolder sectionViewHolder, String title, int position );
 
+	/**
+	 * Get the item type at the position.
+	 *
+	 * @param position
+	 * 		int
+	 *
+	 * @return int
+	 */
 	@Override
 	public int getItemViewType( int position ) {
 
-		return isSectionHeaderPosition( position ) ? SECTION_TYPE : mBaseAdapter.getItemViewType( sectionedPositionToPosition( position ) ) + 1;
+		return isSectionHeaderPosition( position ) ? SECTION_TYPE : baseAdapter.getItemViewType( sectionedPositionToPosition( position ) ) + 1;
 	}
 
 	public static class Section {
@@ -122,9 +153,15 @@ public abstract class SectionAdapter extends RecyclerView.Adapter<RecyclerView.V
 		}
 	}
 
+	/**
+	 * Set the sections of this adapter.
+	 *
+	 * @param sections
+	 * 		Section[]
+	 */
 	public void setSections( Section[] sections ) {
 
-		mSections.clear();
+		this.sections.clear();
 
 		Arrays.sort( sections, new Comparator<Section>() {
 
@@ -140,20 +177,28 @@ public abstract class SectionAdapter extends RecyclerView.Adapter<RecyclerView.V
 		for( Section section : sections ) {
 
 			section.sectionedPosition = section.firstPosition + offset;
-			mSections.append( section.sectionedPosition, section );
+			this.sections.append( section.sectionedPosition, section );
 			++offset;
 		}
 
 		notifyDataSetChanged();
 	}
 
+	/**
+	 * Get position of item, including sections.
+	 *
+	 * @param position
+	 * 		int
+	 *
+	 * @return int
+	 */
 	public int positionToSectionedPosition( int position ) {
 
 		int offset = 0;
 
-		for( int i = 0; i < mSections.size(); i++ ) {
+		for( int i = 0; i < sections.size(); i++ ) {
 
-			if( mSections.valueAt( i ).firstPosition > position ) {
+			if( sections.valueAt( i ).firstPosition > position ) {
 
 				break;
 			}
@@ -164,6 +209,14 @@ public abstract class SectionAdapter extends RecyclerView.Adapter<RecyclerView.V
 		return position + offset;
 	}
 
+	/**
+	 * Get position of item, ignoring sections.
+	 *
+	 * @param sectionedPosition
+	 * 		int
+	 *
+	 * @return int
+	 */
 	public int sectionedPositionToPosition( int sectionedPosition ) {
 
 		if( isSectionHeaderPosition( sectionedPosition ) ) {
@@ -173,9 +226,9 @@ public abstract class SectionAdapter extends RecyclerView.Adapter<RecyclerView.V
 
 		int offset = 0;
 
-		for( int i = 0; i < mSections.size(); i++ ) {
+		for( int i = 0; i < sections.size(); i++ ) {
 
-			if( mSections.valueAt( i ).sectionedPosition > sectionedPosition ) {
+			if( sections.valueAt( i ).sectionedPosition > sectionedPosition ) {
 
 				break;
 			}
@@ -186,20 +239,41 @@ public abstract class SectionAdapter extends RecyclerView.Adapter<RecyclerView.V
 		return sectionedPosition + offset;
 	}
 
+	/**
+	 * Returns true if the specified position is a section header
+	 *
+	 * @param position
+	 * 		int
+	 *
+	 * @return boolean
+	 */
 	public boolean isSectionHeaderPosition( int position ) {
 
-		return mSections.get( position ) != null;
+		return sections.get( position ) != null;
 	}
 
+	/**
+	 * Returns the item id at the specified position. Calculates an id for section headers.
+	 *
+	 * @param position
+	 * 		int
+	 *
+	 * @return long
+	 */
 	@Override
 	public long getItemId( int position ) {
 
-		return isSectionHeaderPosition( position ) ? Integer.MAX_VALUE - mSections.indexOfKey( position ) : mBaseAdapter.getItemId( sectionedPositionToPosition( position ) );
+		return isSectionHeaderPosition( position ) ? Integer.MAX_VALUE - sections.indexOfKey( position ) : baseAdapter.getItemId( sectionedPositionToPosition( position ) );
 	}
 
+	/**
+	 * Returns count of items and sections.
+	 *
+	 * @return int
+	 */
 	@Override
 	public int getItemCount() {
 
-		return ( mValid ? mBaseAdapter.getItemCount() + mSections.size() : 0 );
+		return ( isValid ? baseAdapter.getItemCount() + sections.size() : 0 );
 	}
 }
