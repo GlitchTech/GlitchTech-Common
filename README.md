@@ -1,11 +1,11 @@
 GlitchTech Science: Common Use Library
 ======================================
 
-**Version:** 1.3.0
+**Version:** 1.4.0
 
 **Initial project launch:** 2015.07.19
 
-**Last major update:** 2015.10.26
+**Last major update:** 2015.10.29
 
 **Lead Developer:** [Matt Schott](glitchtechscience@gmail.com)
 
