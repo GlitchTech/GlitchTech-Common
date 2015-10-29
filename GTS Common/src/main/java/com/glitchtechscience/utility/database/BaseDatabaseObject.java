@@ -422,6 +422,26 @@ public abstract class BaseDatabaseObject {
 	 */
 	public abstract String getSortOrder();
 
+	/**
+	 * Return a string containing the GROUP BY argument.
+	 *
+	 * @return String|null
+	 */
+	public String getOrderBy() {
+
+		return null;
+	}
+
+	/**
+	 * Return a string containing the HAVING argument.
+	 *
+	 * @return String|null
+	 */
+	public String getHaving() {
+
+		return null;
+	}
+
 	/* ----- ----- ----- */
 
 	/**
