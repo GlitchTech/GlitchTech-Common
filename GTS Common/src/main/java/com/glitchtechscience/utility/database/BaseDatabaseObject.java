@@ -335,17 +335,17 @@ public abstract class BaseDatabaseObject {
 	 */
 	public void setData( ContentValues data ) {
 
-		if( data.containsKey( ID_FIELD ) ) {
+		if( data.containsKey( ID_FIELD ) && data.get( ID_FIELD ) != null ) {
 
 			this.setId( data.getAsLong( ID_FIELD ) );
 		}
 
-		if( this.isCVValueLong( data, LAST_SYNC_FIELD ) ) {
+		if( this.isCVValueLong( data, LAST_SYNC_FIELD ) && data.get( LAST_SYNC_FIELD ) != null ) {
 
 			this.setLastSync( data.getAsLong( LAST_SYNC_FIELD ) );
 		}
 
-		if( data.containsKey( PENDING_DELETION_FIELD ) ) {
+		if( data.containsKey( PENDING_DELETION_FIELD ) && data.get( PENDING_DELETION_FIELD ) != null ) {
 
 			this.setPendingDeletion( 1 == data.getAsInteger( PENDING_DELETION_FIELD ) );
 		}
