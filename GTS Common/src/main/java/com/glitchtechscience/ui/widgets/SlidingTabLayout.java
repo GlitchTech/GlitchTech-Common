@@ -46,6 +46,8 @@ import android.widget.TextView;
  * <p>
  * The views used as tabs can be customized by calling {@link #setCustomTabView(int, int)},
  * providing the layout ID of your custom layout.
+ *
+ * @deprecated Replace with https://github.com/astuetz/PagerSlidingTabStrip
  */
 public class SlidingTabLayout extends HorizontalScrollView {
 
