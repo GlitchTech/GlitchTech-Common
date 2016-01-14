@@ -47,7 +47,10 @@ public class AsyncTaskBase extends AsyncTask<Integer, Integer, Void> {
 	@Override
 	protected void onPostExecute( Void result ) {
 
-		callback.onTaskComplete( null );
+		if( callback != null ) {
+
+			callback.onTaskComplete( null );
+		}
 	}
 
 	public boolean isTaskReady() {
