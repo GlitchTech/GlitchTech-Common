@@ -15,7 +15,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.glitchtechscience.LibraryCore.R;
-import com.glitchtechscience.ui.widgets.UndoBar;
 
 import java.util.ArrayList;
 
@@ -26,8 +25,6 @@ public abstract class ListFragment extends android.support.v4.app.ListFragment i
 
 	private ActionMode mActionMode;
 	private ListView mListView;
-
-	protected UndoBar undobar;
 
 	/**
 	 * Return layout used in Fragment
@@ -75,8 +72,6 @@ public abstract class ListFragment extends android.support.v4.app.ListFragment i
 
 			throw new AssertionError( "rootView cannot be null" );
 		}
-
-		undobar = (UndoBar) rootView.findViewById( R.id.undobar );
 
 		return rootView;
 	}
