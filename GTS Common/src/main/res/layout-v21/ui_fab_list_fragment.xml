@@ -11,19 +11,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent">
 
-		<TextView
-			android:id="@id/android:empty"
-			style="@style/GTS.TextAppearance.Headline"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:gravity="center"
-			android:text="@string/generic_empty_list" />
-
-		<ListView
-			android:id="@id/android:list"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:drawSelectorOnTop="false" />
+		<include layout="@layout/listview_empty_merge" />
 	</FrameLayout>
 
 	<com.getbase.floatingactionbutton.AddFloatingActionButton
