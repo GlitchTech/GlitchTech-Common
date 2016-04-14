@@ -24,6 +24,8 @@
 	<dimen name="spacing_small">8dp</dimen>
 	<dimen name="spacing_tiny">4dp</dimen>
 
+	<dimen name="img_square_tiny">16dp</dimen>
+	<dimen name="img_square_xsmall">24dp</dimen>
 	<dimen name="img_square_small">32dp</dimen>
 	<dimen name="img_square_medium">48dp</dimen>
 	<dimen name="img_square_large">64dp</dimen>
