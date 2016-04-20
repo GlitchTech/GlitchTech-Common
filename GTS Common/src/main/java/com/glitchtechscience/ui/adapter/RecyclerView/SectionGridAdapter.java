@@ -3,6 +3,7 @@ package com.glitchtechscience.ui.adapter.RecyclerView;
 import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.ViewGroup;
 
@@ -105,7 +106,13 @@ public abstract class SectionGridAdapter extends RecyclerView.Adapter<RecyclerVi
 			renderViewHolder( sectionViewHolder, sections.get( position ).title.toString(), position );
 		} else {
 
-			baseAdapter.onBindViewHolder( sectionViewHolder, sectionedPositionToPosition( position ) );
+			try {
+
+				baseAdapter.onBindViewHolder( sectionViewHolder, sectionedPositionToPosition( position ) );
+			} catch( IllegalStateException e ) {
+
+				Log.e( "SectionGridAdapter", e.getLocalizedMessage() );
+			}
 		}
 	}
 
