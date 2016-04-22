@@ -9,53 +9,33 @@ import android.support.v7.app.AlertDialog;
  */
 public class Alert {
 
-	private static final int MESSAGE_ALERT = 1;
-	private static final int CONFIRM_ALERT = 2;
+	private final static int DEFAULT_ICON = android.R.drawable.ic_dialog_alert;
 
-	public static void messageAlert( Context ctx, String title, String message ) {
+	public static void Message( Context ctx, String title, String message ) {
 
-		showAlertDialog( MESSAGE_ALERT, ctx, title, message, null, "OK" );
+		Message( ctx, title, message, DEFAULT_ICON );
 	}
 
-	public static void messageAlert( Context ctx, String title, String message, int icon ) {
+	public static void Message( Context ctx, String title, String message, int icon ) {
 
-		showAlertDialog( MESSAGE_ALERT, ctx, title, message, null, icon, "OK" );
+		Confirmation( ctx, title, message, null, icon, "OK", null );
 	}
 
-	public static void messageAlert( Context ctx, String title, String message, int icon, boolean cancelable ) {
+	public static void Confirmation( Context ctx, String title, String message, DialogInterface.OnClickListener callBack, String positive ) {
 
-		showAlertDialog( MESSAGE_ALERT, ctx, title, message, null, icon, cancelable, "OK" );
+		Confirmation( ctx, title, message, callBack, positive, null );
 	}
 
-	public static void confirmationAlert( Context ctx, String title, String message, DialogInterface.OnClickListener callBack ) {
+	public static void Confirmation( Context ctx, String title, String message, DialogInterface.OnClickListener callBack, String positive, String negative ) {
 
-		showAlertDialog( CONFIRM_ALERT, ctx, title, message, callBack, "OK" );
+		Confirmation( ctx, title, message, callBack, DEFAULT_ICON, positive, negative );
 	}
 
-	public static void confirmationAlert( Context ctx, String title, String message, DialogInterface.OnClickListener callBack, String... buttonNames ) {
-
-		showAlertDialog( CONFIRM_ALERT, ctx, title, message, callBack, buttonNames );
-	}
-
-	public static void confirmationAlert( Context ctx, String title, String message, DialogInterface.OnClickListener callBack, int icon, String... buttonNames ) {
-
-		showAlertDialog( CONFIRM_ALERT, ctx, title, message, callBack, icon, buttonNames );
-	}
-
-	private static void showAlertDialog( int alertType, Context ctx, String title, String message, DialogInterface.OnClickListener posCallback, String... buttonNames ) {
-
-		showAlertDialog( alertType, ctx, title, message, posCallback, android.R.drawable.ic_dialog_alert, buttonNames );
-	}
-
-	private static void showAlertDialog( int alertType, Context ctx, String title, String message, DialogInterface.OnClickListener posCallback, int icon, String... buttonNames ) {
-
-		showAlertDialog( alertType, ctx, title, message, posCallback, icon, false, buttonNames );
-	}
-
-	private static void showAlertDialog( int alertType, Context ctx, String title, String message, DialogInterface.OnClickListener posCallback, int icon, boolean cancelable, String... buttonNames ) {
+	public static void Confirmation( Context ctx, String title, String message, DialogInterface.OnClickListener callBack, int icon, String positive, String negative ) {
 
 		final AlertDialog.Builder builder = new AlertDialog.Builder( ctx );
 
+		// Set Text
 		if( title != null ) {
 
 			builder.setTitle( title );
@@ -63,27 +43,27 @@ public class Alert {
 
 		builder.setMessage( ( message == null ) ? "" : message );
 
-		// false = pressing back button won't dismiss this alert
-		builder.setCancelable( cancelable );
+		// Disabled back button exit
+		builder.setCancelable( false );
 
-		// icon on the left of title
+		// Set icon
 		builder.setIcon( icon );
 
-		switch( alertType ) {
-			case MESSAGE_ALERT:
-				break;
-			case CONFIRM_ALERT:
-				builder.setPositiveButton( buttonNames[0], posCallback );
-				break;
+		// Bind buttons
+		if( negative != null ) {
+
+			builder.setNegativeButton( negative, new DialogInterface.OnClickListener() {
+
+				@Override
+				public void onClick( DialogInterface dialogInterface, int i ) {
+
+					dialogInterface.dismiss();
+				}
+			} );
 		}
 
-		builder.setNegativeButton( buttonNames[buttonNames.length - 1], new DialogInterface.OnClickListener() {
+		builder.setPositiveButton( positive, callBack );
 
-			@Override
-			public void onClick( DialogInterface dialogInterface, int i ) {
-
-				dialogInterface.dismiss();
-			}
-		} ).create().show();
+		builder.create().show();
 	}
 }
