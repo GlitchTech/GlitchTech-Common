@@ -1,26 +1,38 @@
 GlitchTech Science: Common Use Library
 ======================================
 
-**Version:** 1.6.4
-
-**Initial project launch:** 2015.07.19
-
-**Last major update:** 2016.02.02
+This is a common use library for GlitchTech Science projects.
 
 **Lead Developer:** [Matt Schott](glitchtechscience@gmail.com)
 
-**Website:** [http://glitchtechscience.com/](http://glitchtechscience.com/)
+**Website:** [https://github.com/GlitchTech/GlitchTech-Common](https://github.com/GlitchTech/GlitchTech-Common)
 
-About
------
+[//]: # "./gradlew install)"
 
-This is a common use library for GlitchTech Science projects.
+[//]: # "./gradlew bintrayUpload"
 
-Version Control
----------------
 
-This project is under version control using git.
+Download
+--------
 
-[https://github.com/GlitchTech/GlitchTech-Common](https://github.com/GlitchTech/GlitchTech-Common)
+Grab via Gradle:
+```groovy
+compile 'PATH'
+```
 
-`git clone git@github.com:GlitchTech/GlitchTech-Common.git`
+License
+--------
+
+    Copyright 2016 GlitchTech Science
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
