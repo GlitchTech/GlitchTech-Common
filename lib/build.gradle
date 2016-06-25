@@ -9,7 +9,7 @@ version = "1.7.0"
 
 android {
 	compileSdkVersion 23
-	buildToolsVersion "23.0.2"
+	buildToolsVersion "23.0.3"
 	resourcePrefix "gtscommon__"
 
 	defaultConfig {
@@ -27,10 +27,10 @@ dependencies {
 	compile fileTree( dir: 'libs', include: ['*.jar'] )
 
 	//** Google Support Libraries
-	compile 'com.android.support:support-v4:23.3.0'
-	compile 'com.android.support:appcompat-v7:23.3.0'
-	compile 'com.android.support:recyclerview-v7:23.3.0'
-	compile 'com.android.support:design:23.3.0'
+	compile 'com.android.support:support-v4:23.4.0'
+	compile 'com.android.support:appcompat-v7:23.4.0'
+	compile 'com.android.support:recyclerview-v7:23.4.0'
+	compile 'com.android.support:design:23.4.0'
 
 	// https://github.com/futuresimple/android-floating-action-button
 	compile 'com.getbase:floatingactionbutton:1.2.0'
