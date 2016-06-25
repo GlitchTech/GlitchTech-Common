@@ -314,14 +314,17 @@ public abstract class BaseDatabaseObject {
 
 		ContentValues data = new ContentValues();
 
-		if( c.isBeforeFirst() ) {
+		if( c != null && !c.isClosed() ) {
 
-			c.moveToFirst();
-		}
+			if( c.isBeforeFirst() ) {
 
-		if( !c.isAfterLast() && !c.isBeforeFirst() ) {
+				c.moveToFirst();
+			}
 
-			DatabaseUtils.cursorRowToContentValues( c, data );
+			if( !c.isAfterLast() && !c.isBeforeFirst() ) {
+
+				DatabaseUtils.cursorRowToContentValues( c, data );
+			}
 		}
 
 		setData( data );
