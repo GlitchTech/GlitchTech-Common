@@ -7,7 +7,7 @@ This is a common use library for GlitchTech Science projects.
 
 **Website:** [https://github.com/GlitchTech/GlitchTech-Common](https://github.com/GlitchTech/GlitchTech-Common)
 
-[//]: # "./gradlew install)"
+[//]: # "./gradlew install"
 
 [//]: # "./gradlew bintrayUpload"
 
@@ -17,7 +17,7 @@ Download
 
 Grab via Gradle:
 ```groovy
-compile 'com.glitchtechscience.gts-common:lib:1.7.0'
+compile 'com.glitchtechscience.gts-common:lib:1.7.1'
 ```
 
 License
