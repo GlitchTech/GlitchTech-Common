@@ -88,7 +88,7 @@ public abstract class BaseDatabaseObject {
 	 *
 	 * @return boolean
 	 */
-	public boolean getPendingDeletion() {
+	public boolean isPendingDeletion() {
 
 		return this.pendingDeletion == 1;
 	}
@@ -299,7 +299,7 @@ public abstract class BaseDatabaseObject {
 
 		data.put( ID_FIELD, this.getId() );
 		data.put( LAST_SYNC_FIELD, this.getLastSync() );
-		data.put( PENDING_DELETION_FIELD, this.getPendingDeletion() ? 1 : 0 );
+		data.put( PENDING_DELETION_FIELD, this.isPendingDeletion() ? 1 : 0 );
 
 		return data;
 	}
