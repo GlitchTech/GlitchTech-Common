@@ -168,7 +168,12 @@ public abstract class BaseDatabaseObject {
 
 			Cursor c = cr.query( uri, projection, selection, selectionArgs, sortOrder );
 
-			setData( c );
+			if( c != null ) {
+
+				setData( c );
+
+				c.close();
+			}
 		}
 	}
 
