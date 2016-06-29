@@ -3,8 +3,10 @@ package com.glitchtechscience.utility.database;
 import android.content.ContentProvider;
 import android.content.ContentProviderOperation;
 import android.content.ContentProviderResult;
+import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.OperationApplicationException;
+import android.database.ContentObserver;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
@@ -22,9 +24,68 @@ public abstract class BaseContentProvider extends ContentProvider {
 
 	/* ----- ----- ----- */
 
+	/**
+	 * Get writable SQLite database
+	 *
+	 * @return SQLiteDatabase
+	 */
 	protected abstract SQLiteDatabase getWritableDatabase();
 
+	/**
+	 * Get readable SQLite database
+	 *
+	 * @return SQLiteDatabase
+	 */
 	protected abstract SQLiteDatabase getReadableDatabase();
+
+	/**
+	 * Get sibling URI paths.
+	 *
+	 * @param touchedUri
+	 * 		Uri
+	 *
+	 * @return ArrayList<Uri>
+	 */
+	protected abstract ArrayList<Uri> getSiblingPaths( Uri touchedUri );
+
+	/* ----- ----- ----- */
+
+	/**
+	 * Notify observers of content updates
+	 *
+	 * @param contentResolver
+	 * 		ContentResolver
+	 * @param uri
+	 * 		The uri of the content that was changed.
+	 * @param observer
+	 * 		The observer that originated the change, may be null.
+	 */
+	private void notifyObservers( ContentResolver contentResolver, Uri uri, ContentObserver observer, String... additionalPath ) {
+
+		ArrayList<Uri> targets = getSiblingPaths( uri );
+
+		if( additionalPath.length > 0 ) {
+			// Append additional path information
+
+			Uri.Builder uriBuilder = uri.buildUpon();
+
+			for( String item : additionalPath ) {
+
+				uriBuilder.appendPath( item );
+			}
+
+			targets.add( uriBuilder.build() );
+		} else {
+
+			targets.add( uri );
+		}
+
+		// Notify listeners
+		for( Uri item : targets ) {
+
+			contentResolver.notifyChange( item, observer );
+		}
+	}
 
 	/* ----- ----- ----- */
 
@@ -66,7 +127,7 @@ public abstract class BaseContentProvider extends ContentProvider {
 
 				if( getContext() != null && uri != null ) {
 
-					getContext().getContentResolver().notifyChange( uri, null );
+					notifyObservers( getContext().getContentResolver(), uri, null );
 				}
 			} finally {
 
@@ -192,11 +253,13 @@ public abstract class BaseContentProvider extends ContentProvider {
 
 			if( id >= 0 ) {
 
-				Uri resultUri = uri.buildUpon().appendPath( Long.toString( id ) ).build();
+				String pathAddition = Long.toString( id );
+
+				Uri resultUri = uri.buildUpon().appendPath( pathAddition ).build();
 
 				if( getContext() != null && resultUri != null ) {
 
-					getContext().getContentResolver().notifyChange( resultUri, null );
+					notifyObservers( getContext().getContentResolver(), uri, null, pathAddition );
 				}
 
 				return resultUri;
@@ -235,7 +298,7 @@ public abstract class BaseContentProvider extends ContentProvider {
 
 			if( rows > 0 && getContext() != null ) {
 
-				getContext().getContentResolver().notifyChange( uri, null );
+				notifyObservers( getContext().getContentResolver(), uri, null );
 			}
 
 			return rows;
@@ -269,7 +332,7 @@ public abstract class BaseContentProvider extends ContentProvider {
 
 			if( rows > 0 && getContext() != null ) {
 
-				getContext().getContentResolver().notifyChange( uri, null );
+				notifyObservers( getContext().getContentResolver(), uri, null );
 			}
 
 			return rows;
