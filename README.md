@@ -17,7 +17,7 @@ Download
 
 Grab via Gradle:
 ```groovy
-compile 'com.glitchtechscience.gts-common:lib:1.8.0'
+compile 'com.glitchtechscience.gts-common:lib:1.8.2'
 ```
 
 License
