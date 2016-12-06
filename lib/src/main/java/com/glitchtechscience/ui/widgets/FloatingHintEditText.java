@@ -14,6 +14,9 @@ import android.widget.EditText;
 
 import com.glitchtechscience.LibraryCore.R;
 
+/**
+ * @deprecated Use android.support.design.widget.TextInputLayout
+ */
 public class FloatingHintEditText extends EditText {
 
 	private final Paint hintPaint = new Paint();
