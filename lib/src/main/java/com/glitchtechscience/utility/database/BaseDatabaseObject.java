@@ -1,5 +1,6 @@
 package com.glitchtechscience.utility.database;
 
+import android.content.ContentProviderOperation;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
@@ -289,6 +290,39 @@ public abstract class BaseDatabaseObject {
 	public int delete( ContentResolver cr ) {
 
 		return cr.delete( getUri(), getSelection(), getSelectionArgs() );
+	}
+
+	/* ----- ----- ----- */
+
+	/**
+	 * Create ContentProviderOperation for insert or update, whichever is appropriate.
+	 *
+	 * @return ContentProviderOperation
+	 */
+	public ContentProviderOperation getContentProviderOperation() {
+
+		ContentProviderOperation.Builder builder;
+
+		ContentValues data = getData();
+
+		// Set type
+		if( getId() < 0 ) {
+			// Insert statement builder
+
+			builder = ContentProviderOperation.newInsert( getUri() );
+
+			data.remove( ID_FIELD );
+		} else {
+			// Update statement builder
+
+			builder = ContentProviderOperation.newUpdate( getUri() );
+
+			builder.withSelection( getSelection(), getSelectionArgs() );
+		}
+
+		builder.withValues( data );
+
+		return builder.build();
 	}
 
 	/* ----- ----- ----- */
