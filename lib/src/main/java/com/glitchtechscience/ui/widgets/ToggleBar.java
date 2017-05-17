@@ -13,6 +13,8 @@ import com.glitchtechscience.LibraryCore.R;
 
 public class ToggleBar extends RelativeLayout {
 
+	// TODO https://stackoverflow.com/questions/34799622/android-data-binding-with-a-custom-view
+
 	private TextView label;
 	private TextView desc;
 	private Toggle toggle;
