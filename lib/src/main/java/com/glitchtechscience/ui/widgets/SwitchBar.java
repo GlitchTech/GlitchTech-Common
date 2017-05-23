@@ -2,9 +2,15 @@ package com.glitchtechscience.ui.widgets;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.databinding.BindingAdapter;
+import android.databinding.InverseBindingAdapter;
+import android.databinding.InverseBindingListener;
+import android.databinding.InverseBindingMethod;
+import android.databinding.InverseBindingMethods;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
@@ -12,6 +18,9 @@ import android.widget.TextView;
 
 import com.glitchtechscience.LibraryCore.R;
 
+@InverseBindingMethods({
+		@InverseBindingMethod(type = SwitchBar.class, attribute = "android:checked"),
+})
 public class SwitchBar extends RelativeLayout {
 
 	private TextView label;
@@ -76,11 +85,6 @@ public class SwitchBar extends RelativeLayout {
 		return toggle.isChecked();
 	}
 
-	public boolean getChecked() {
-
-		return isChecked();
-	}
-
 	public void setChecked( boolean checked ) {
 
 		toggle.setChecked( checked );
@@ -94,5 +98,38 @@ public class SwitchBar extends RelativeLayout {
 	public void setOnCheckedChangeListener( OnCheckedChangeListener l ) {
 
 		toggle.setOnCheckedChangeListener( l );
+	}
+
+	@InverseBindingAdapter(attribute = "android:checked")
+	public static boolean getChecked( SwitchBar view ) {
+
+		return view.isChecked();
+	}
+
+	@BindingAdapter("android:checkedAttrChanged")
+	public static void setOnCheckedChangeListener( SwitchBar view, final InverseBindingListener checkedChanged ) {
+
+		if( checkedChanged == null ) {
+
+			view.setOnCheckedChangeListener( null );
+		} else {
+
+			view.setOnCheckedChangeListener( new CompoundButton.OnCheckedChangeListener() {
+
+				/**
+				 * Called when the checked state of a compound button has changed.
+				 *
+				 * @param buttonView
+				 * 		The compound button view whose state has changed.
+				 * @param isChecked
+				 * 		The new checked state of buttonView.
+				 */
+				@Override
+				public void onCheckedChanged( CompoundButton buttonView, boolean isChecked ) {
+
+					checkedChanged.onChange();
+				}
+			} );
+		}
 	}
 }
