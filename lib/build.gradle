@@ -12,6 +12,10 @@ android {
 	buildToolsVersion '25.0.3'
 	resourcePrefix "gtscommon__"
 
+	dataBinding {
+		enabled = true
+	}
+
 	defaultConfig {
 		minSdkVersion 16
 		targetSdkVersion 25

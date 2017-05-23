@@ -7,33 +7,32 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.RelativeLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.glitchtechscience.LibraryCore.R;
 
-public class ToggleBar extends RelativeLayout {
-
-	// TODO https://stackoverflow.com/questions/34799622/android-data-binding-with-a-custom-view
+public class SwitchBar extends RelativeLayout {
 
 	private TextView label;
 	private TextView desc;
-	private Toggle toggle;
+	private Switch toggle;
 
-	public ToggleBar( Context context, AttributeSet attrs ) {
+	public SwitchBar( Context context, AttributeSet attrs ) {
 
 		super( context, attrs );
 
-		LayoutInflater.from( context ).inflate( R.layout.ui_widget_toggle_bar, this, true );
+		LayoutInflater.from( context ).inflate( R.layout.gtscommon__ui_widget_switch_bar, this, true );
 
-		TypedArray array = context.obtainStyledAttributes( attrs, R.styleable.ToggleBar, 0, 0 );
+		TypedArray array = context.obtainStyledAttributes( attrs, R.styleable.SwitchBar, 0, 0 );
 
 		label = (TextView) findViewById( R.id.label );
-		setLabel( array.getString( R.styleable.ToggleBar_label ) );
+		setLabel( array.getString( R.styleable.SwitchBar_label ) );
 
 		desc = (TextView) findViewById( R.id.desc );
-		setDesc( array.getString( R.styleable.ToggleBar_description ) );
+		setDesc( array.getString( R.styleable.SwitchBar_description ) );
 
-		toggle = (Toggle) findViewById( R.id.toggle );
+		toggle = (Switch) findViewById( R.id.toggle );
 		setTextOn( array.getString( R.styleable.ToggleBar_android_textOn ) );
 		setTextOff( array.getString( R.styleable.ToggleBar_android_textOff ) );
 		setChecked( array.getBoolean( R.styleable.ToggleBar_android_checked, false ) );
@@ -75,6 +74,11 @@ public class ToggleBar extends RelativeLayout {
 	public boolean isChecked() {
 
 		return toggle.isChecked();
+	}
+
+	public boolean getChecked() {
+
+		return isChecked();
 	}
 
 	public void setChecked( boolean checked ) {

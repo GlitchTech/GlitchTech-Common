@@ -12,9 +12,10 @@ import android.widget.ToggleButton;
 
 import com.glitchtechscience.LibraryCore.R;
 
+/**
+ * @deprecated
+ */
 public class Toggle extends LinearLayout {
-
-	// TODO https://stackoverflow.com/questions/34799622/android-data-binding-with-a-custom-view
 
 	private CompoundButton compoundButton;
 
