@@ -33,7 +33,7 @@
 		<attr name="android:checked" />
 	</declare-styleable>
 
-	<declare-styleable name="ToggleBar">
+	<declare-styleable name="SwitchBar">
 		<attr name="label" />
 		<attr name="description" />
 		<attr name="android:textOff" />

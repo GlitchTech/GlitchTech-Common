@@ -5,16 +5,20 @@ apply plugin: 'com.jfrog.bintray'
 def siteUrl = 'https://github.com/GlitchTech/GlitchTech-Common'      // Homepage URL of the library
 def gitUrl = 'https://github.com/GlitchTech/GlitchTech-Common.git'   // Git repository URL
 group = "com.glitchtechscience.gts-common"
-version = "1.8.2"
+version = "1.9.0"
 
 android {
-	compileSdkVersion 24
-	buildToolsVersion "23.0.3"
+	compileSdkVersion 25
+	buildToolsVersion '25.0.3'
 	resourcePrefix "gtscommon__"
+
+	dataBinding {
+		enabled = true
+	}
 
 	defaultConfig {
 		minSdkVersion 16
-		targetSdkVersion 23
+		targetSdkVersion 25
 		versionCode 100
 		versionName version
 	}
@@ -27,10 +31,10 @@ dependencies {
 	compile fileTree( dir: 'libs', include: ['*.jar'] )
 
 	//** Google Support Libraries
-	compile 'com.android.support:support-v4:24.0.0'
-	compile 'com.android.support:appcompat-v7:24.0.0'
-	compile 'com.android.support:recyclerview-v7:24.0.0'
-	compile 'com.android.support:design:24.0.0'
+	compile 'com.android.support:support-v4:25.3.1'
+	compile 'com.android.support:appcompat-v7:25.3.1'
+	compile 'com.android.support:design:25.3.1'
+	compile 'com.android.support:recyclerview-v7:25.3.1'
 
 	// https://github.com/futuresimple/android-floating-action-button
 	compile 'com.getbase:floatingactionbutton:1.2.0'

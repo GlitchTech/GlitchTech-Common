@@ -12,6 +12,9 @@ import android.widget.ToggleButton;
 
 import com.glitchtechscience.LibraryCore.R;
 
+/**
+ * @deprecated
+ */
 public class Toggle extends LinearLayout {
 
 	private CompoundButton compoundButton;
