@@ -17,15 +17,15 @@
 
 	<!-- Toggle Bar Styles -->
 
-	<style name="GTS.Widget.ToggleBar">
+	<style name="GTS.Widget.SwitchBar">
 		<item name="android:layout_marginBottom">@dimen/spacing_small</item>
 		<item name="android:layout_marginTop">@dimen/spacing_small</item>
 	</style>
 
-	<style name="GTS.Widget.ToggleBar.Label" parent="GTS.TextAppearance.Body2">
+	<style name="GTS.Widget.SwitchBar.Label" parent="GTS.TextAppearance.Body2">
 	</style>
 
-	<style name="GTS.Widget.ToggleBar.Note" parent="GTS.Widget.Note">
+	<style name="GTS.Widget.SwitchBar.Note" parent="GTS.Widget.Note">
 	</style>
 
 	<!-- Labeled Edit Text Styles -->
