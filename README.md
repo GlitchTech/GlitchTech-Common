@@ -17,7 +17,7 @@ Download
 
 Grab via Gradle:
 ```groovy
-compile 'com.glitchtechscience.gts-common:lib:1.9.0'
+compile 'com.glitchtechscience.gts-common:lib:1.9.1'
 ```
 
 License
