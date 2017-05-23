@@ -33,9 +33,9 @@ public class SwitchBar extends RelativeLayout {
 		setDesc( array.getString( R.styleable.SwitchBar_description ) );
 
 		toggle = (Switch) findViewById( R.id.toggle );
-		setTextOn( array.getString( R.styleable.ToggleBar_android_textOn ) );
-		setTextOff( array.getString( R.styleable.ToggleBar_android_textOff ) );
-		setChecked( array.getBoolean( R.styleable.ToggleBar_android_checked, false ) );
+		setTextOn( array.getString( R.styleable.SwitchBar_android_textOn ) );
+		setTextOff( array.getString( R.styleable.SwitchBar_android_textOff ) );
+		setChecked( array.getBoolean( R.styleable.SwitchBar_android_checked, false ) );
 
 		array.recycle();
 	}
