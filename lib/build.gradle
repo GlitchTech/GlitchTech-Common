@@ -8,8 +8,8 @@ group = "com.glitchtechscience.gts-common"
 version = "1.9.2"
 
 android {
-	compileSdkVersion 25
-	buildToolsVersion '25.0.3'
+	compileSdkVersion 28
+	buildToolsVersion '28.0.3'
 	resourcePrefix "gtscommon__"
 
 	dataBinding {
@@ -18,7 +18,7 @@ android {
 
 	defaultConfig {
 		minSdkVersion 16
-		targetSdkVersion 25
+		targetSdkVersion 28
 		versionCode 100
 		versionName version
 	}
@@ -28,16 +28,16 @@ android {
 }
 
 dependencies {
-	compile fileTree( dir: 'libs', include: ['*.jar'] )
+	compile fileTree(dir: 'libs', include: ['*.jar'])
 
 	//** Google Support Libraries
-	compile 'com.android.support:support-v4:25.3.1'
-	compile 'com.android.support:appcompat-v7:25.3.1'
-	compile 'com.android.support:design:25.3.1'
-	compile 'com.android.support:recyclerview-v7:25.3.1'
+	compile 'com.android.support:support-v4:28.0.0'
+	compile 'com.android.support:appcompat-v7:28.0.0'
+	compile 'com.android.support:design:28.0.0'
+	compile 'com.android.support:recyclerview-v7:28.0.0'
 
 	// https://github.com/futuresimple/android-floating-action-button
-	compile 'com.getbase:floatingactionbutton:1.2.0'
+	compile 'com.getbase:floatingactionbutton:1.10.1'
 
 	// https://github.com/daimajia/AndroidViewAnimations
 	compile 'com.nineoldandroids:library:2.4.0'
@@ -46,11 +46,11 @@ dependencies {
 }
 
 Properties properties = new Properties()
-properties.load( project.rootProject.file( 'local.properties' ).newDataInputStream() )
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
 bintray {
-	user = properties.getProperty( "bintray.user" )
-	key = properties.getProperty( "bintray.apikey" )
+	user = properties.getProperty("bintray.user")
+	key = properties.getProperty("bintray.apikey")
 
 	configurations = ['archives']
 
@@ -103,18 +103,18 @@ install {
 	}
 }
 
-task sourcesJar( type: Jar ) {
+task sourcesJar(type: Jar) {
 	from android.sourceSets.main.java.srcDirs
 	classifier = 'sources'
 }
 
-task javadoc( type: Javadoc ) {
+task javadoc(type: Javadoc) {
 	source = android.sourceSets.main.java.srcDirs
-	classpath += project.files( android.getBootClasspath().join( File.pathSeparator ) )
+	classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
 	failOnError false
 }
 
-task javadocJar( type: Jar, dependsOn: javadoc ) {
+task javadocJar(type: Jar, dependsOn: javadoc) {
 	classifier = 'javadoc'
 	from javadoc.destinationDir
 	// options.encoding = 'UTF-8'
