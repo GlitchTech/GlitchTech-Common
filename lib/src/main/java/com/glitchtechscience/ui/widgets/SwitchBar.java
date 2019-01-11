@@ -2,11 +2,11 @@ package com.glitchtechscience.ui.widgets;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.databinding.BindingAdapter;
-import android.databinding.InverseBindingAdapter;
-import android.databinding.InverseBindingListener;
-import android.databinding.InverseBindingMethod;
-import android.databinding.InverseBindingMethods;
+import androidx.databinding.BindingAdapter;
+import androidx.databinding.InverseBindingAdapter;
+import androidx.databinding.InverseBindingListener;
+import androidx.databinding.InverseBindingMethod;
+import androidx.databinding.InverseBindingMethods;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
