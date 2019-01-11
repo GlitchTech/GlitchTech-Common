@@ -1,8 +1,8 @@
 package com.glitchtechscience.ui;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.view.ActionMode;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.ActionMode;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -21,7 +21,7 @@ import java.util.ArrayList;
 /**
  * Abstract class to assist with multiselect list fragment.
  */
-public abstract class ListFragment extends android.support.v4.app.ListFragment implements AdapterView.OnItemLongClickListener, ActionMode.Callback {
+public abstract class ListFragment extends androidx.fragment.app.ListFragment implements AdapterView.OnItemLongClickListener, ActionMode.Callback {
 
 	private ActionMode mActionMode;
 	private ListView mListView;

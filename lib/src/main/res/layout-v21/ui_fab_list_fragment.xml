@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<android.support.design.widget.CoordinatorLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
 	android:id="@+id/coordinator"
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -22,4 +22,4 @@
 		android:layout_marginBottom="@dimen/add_button_margin"
 		android:layout_marginEnd="@dimen/add_button_margin"
 		app:layout_behavior="com.glitchtechscience.ui.behavior.FloatingActionButtonBehavior" />
-</android.support.design.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
